@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>Κουτί με Ρόδες</title>
+<script>
+(function(){try{var t=localStorage.getItem('theme');if(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)t='light';if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+<style>
+:root{
+  --bg:#000;--sticky-bg:rgba(0,0,0,.72);
+  --surface:#1c1c1e;--surface-2:rgba(28,28,30,.8);
+  --sep:rgba(84,84,88,.65);--sep-light:rgba(84,84,88,.4);
+  --text:#fff;--text-2:rgba(235,235,245,.6);--text-3:rgba(235,235,245,.5);--text-4:rgba(235,235,245,.75);
+  --track:rgba(84,84,88,.45);--track-2:rgba(84,84,88,.6);--track-bar:rgba(120,120,128,.35);
+  --switch-off:#39393d;--switch-on:#30d158;
+  --seg-bg:rgba(118,118,128,.24);--seg-on:#636366;--seg-shadow:0 1px 3px rgba(0,0,0,.3);
+  --blue:#0a84ff;--green:#30d158;--red:#ff453a;--yellow:#ffd60a;--orange:#ff9f0a;
+  --dim:#636366;--race-bg:#0a0a0c;--bar-fill:rgba(235,235,245,.35);
+  --hint-bg:rgba(118,118,128,.18);
+  --joke-bg:rgba(255,214,10,.10);--joke-border:rgba(255,214,10,.30);
+}
+[data-theme="light"]{
+  --bg:#f2f2f7;--sticky-bg:rgba(242,242,247,.85);
+  --surface:#fff;--surface-2:rgba(255,255,255,.9);
+  --sep:rgba(60,60,67,.29);--sep-light:rgba(60,60,67,.18);
+  --text:#000;--text-2:rgba(60,60,67,.6);--text-3:rgba(60,60,67,.5);--text-4:rgba(60,60,67,.75);
+  --track:rgba(120,120,128,.2);--track-2:rgba(120,120,128,.4);--track-bar:rgba(120,120,128,.25);
+  --switch-off:#e5e5ea;--switch-on:#34c759;
+  --seg-bg:rgba(120,120,128,.12);--seg-on:#fff;--seg-shadow:0 1px 3px rgba(0,0,0,.15);
+  --blue:#007aff;--green:#34c759;--red:#ff3b30;--yellow:#ff9500;--orange:#ff9500;
+  --dim:#8e8e93;--race-bg:#e5e5ea;--bar-fill:rgba(60,60,67,.3);
+  --hint-bg:rgba(120,120,128,.12);
+  --joke-bg:rgba(255,149,0,.10);--joke-border:rgba(255,149,0,.35);
+}
+[data-theme="light"] .sticky{background:rgba(28,28,30,.85);border-bottom-color:rgba(84,84,88,.4)}
+[data-theme="light"] .sticky .k{color:rgba(235,235,245,.5)}
+[data-theme="light"] .sticky .v{color:#fff}
+[data-theme="light"] .sticky .u{color:rgba(235,235,245,.5)}
+[data-theme="light"] .sticky .st{background:rgba(28,28,30,.6)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--bg);transition:background .3s}
+body{color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",sans-serif;font-size:17px;line-height:1.3;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;overscroll-behavior-y:none;padding-bottom:calc(30px + env(safe-area-inset-bottom));transition:color .3s}
+.lt{padding:calc(16px + env(safe-area-inset-top)) 20px 12px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.lt h1{margin:0;font-size:34px;font-weight:700;letter-spacing:-.8px;line-height:1.1;display:flex;align-items:center;gap:8px}
+.lt p{margin:4px 0 0;font-size:13px;color:var(--text-2)}
+.theme-btn{background:var(--surface);border:.5px solid var(--sep-light);border-radius:50%;width:44px;height:44px;font-size:20px;cursor:pointer;flex:0 0 auto;display:flex;align-items:center;justify-content:center;padding:0;transition:transform .15s,background .3s}
+.theme-btn:active{transform:scale(.92)}
+.sticky{position:sticky;top:0;z-index:50;background:var(--sticky-bg);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:.5px solid var(--sep-light);padding:calc(8px + env(safe-area-inset-top)) 12px 10px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.st{background:var(--surface-2);border-radius:12px;padding:8px 4px;text-align:center;min-width:0}
+.st .k{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.st .v{font-size:20px;font-weight:700;letter-spacing:-.8px;line-height:1.05;margin-top:2px}
+.st .u{font-size:9px;font-weight:500;color:var(--text-3);margin-top:1px}
+main{padding:16px 16px 0}
+.sect{margin-bottom:22px}
+.sect-t{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--text-3);margin:0 0 8px 4px}
+.group{background:var(--surface);border-radius:14px;overflow:hidden;transition:background .3s}
+.row{display:flex;align-items:center;justify-content:space-between;padding:11px 16px;gap:12px;min-height:44px}
+.row+.row{border-top:.5px solid var(--sep)}
+.row .lbl{font-size:15px;font-weight:500;flex:1;display:flex;align-items:center;gap:8px}
+.ratios{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--sep);border-radius:14px;overflow:hidden}
+.ratio{background:var(--surface);padding:14px 8px;text-align:center;transition:background .3s}
+.ratio .k{font-size:10px;font-weight:600;letter-spacing:.4px;color:var(--text-3);text-transform:uppercase;margin-bottom:4px}
+.ratio .v{font-size:22px;font-weight:700;letter-spacing:-.6px;line-height:1}
+.ratio .u{font-size:10px;color:var(--text-3);margin-top:2px}
+.sw{position:relative;width:51px;height:31px;flex:0 0 auto}
+.sw input{opacity:0;width:0;height:0;position:absolute}
+.sw .sl{position:absolute;inset:0;background:var(--switch-off);border-radius:31px;cursor:pointer;transition:background .25s}
+.sw .sl::before{content:"";position:absolute;height:27px;width:27px;left:2px;top:2px;background:#fff;border-radius:50%;transition:transform .25s;box-shadow:0 2px 5px rgba(0,0,0,.25)}
+.sw input:checked+.sl{background:var(--switch-on)}
+.sw input:checked+.sl::before{transform:translateX(20px)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--sep);border-radius:14px;overflow:hidden}
+.cell{background:var(--surface);padding:10px 8px 12px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0;transition:background .3s}
+.cell .lbl{font-size:10px;font-weight:600;color:var(--text-2);letter-spacing:.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.cell .val{font-size:15px;font-weight:700;letter-spacing:-.4px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.cell .val .u{font-size:10px;color:var(--text-3);margin-left:1px}
+.cell input[type=range]{width:100%;height:24px;margin:0;background:transparent;accent-color:var(--blue);cursor:pointer;display:block}
+.cell.tq-cell .val{color:var(--orange)}
+.cell.tq-cell input{accent-color:var(--orange)}
+.cell.dim .val{color:var(--text-2)}
+.cell.dim input{accent-color:var(--dim)}
+#priceJoke{display:none;font-size:13px;color:var(--yellow);text-align:center;padding:11px 14px;margin-top:8px;background:var(--joke-bg);border:.5px solid var(--joke-border);border-radius:12px;line-height:1.45;font-weight:500;animation:jokeIn .35s ease}
+#priceJoke b{color:var(--text);font-weight:600}
+@keyframes jokeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.similar{display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:13px}
+.similar+.similar{border-top:.5px solid var(--sep)}
+.similar .r{width:22px;font-size:16px;font-weight:700;text-align:center;color:var(--text-3)}
+.similar .info{flex:1;min-width:0}
+.similar .info .name{font-size:14px;font-weight:600;letter-spacing:-.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.similar .info .spec{font-size:11px;color:var(--text-3);margin-top:1px;font-variant-numeric:tabular-nums}
+.similar .rel{display:flex;align-items:center;gap:5px;margin-top:4px;font-size:9px}
+.similar .rellbl{color:var(--text-3);text-transform:uppercase;letter-spacing:.3px;font-weight:600;flex:0 0 auto}
+.similar .relbar{flex:1;height:3px;background:var(--track-bar);border-radius:2px;overflow:hidden}
+.similar .relfill{height:100%;border-radius:2px;transition:width .3s,background .3s}
+.similar .relnum{color:var(--text-3);font-weight:700;font-variant-numeric:tabular-nums;flex:0 0 auto;width:24px;text-align:right}
+.similar .pct{font-size:15px;font-weight:700;color:var(--blue);font-variant-numeric:tabular-nums}
+.similar.empty{padding:16px;text-align:center;color:var(--text-3);font-size:13px;display:block}
+.race{position:relative;height:44px;background:var(--race-bg);border-radius:12px;overflow:hidden;margin-bottom:10px;border:.5px solid var(--sep-light);transition:background .3s}
+.race::after{content:"";position:absolute;left:0;right:0;bottom:10px;height:1px;background:repeating-linear-gradient(90deg,var(--track-2) 0 8px,transparent 8px 16px)}
+#car{position:absolute;left:8px;bottom:8px;font-size:24px;line-height:1;z-index:1}
+.btn{display:block;width:100%;border:none;border-radius:12px;background:var(--blue);color:#fff;padding:14px;font-size:17px;font-weight:600;font-family:inherit;letter-spacing:-.2px;cursor:pointer;transition:opacity .1s}
+.btn:active{opacity:.65}
+.status{font-size:13px;font-weight:500;text-align:center;margin-top:10px;min-height:18px;color:var(--text-2)}
+.status.ok{color:var(--green)}
+.status.no{color:var(--red)}
+.cmp{margin-top:14px}
+.cmp-row{display:flex;align-items:center;gap:10px;padding:4px 0;font-size:13px}
+.cmp-row .nm{width:104px;flex:0 0 auto;text-align:right;color:var(--text-2);font-weight:500;line-height:1.15;letter-spacing:-.1px}
+.cmp-row .nm small{display:block;font-size:10px;color:#ff375f;font-weight:600}
+.cmp-row .b{flex:1;height:6px;background:var(--track);border-radius:3px;overflow:hidden;position:relative}
+.cmp-row .b i{position:absolute;left:0;top:0;bottom:0;background:var(--bar-fill);border-radius:3px;transition:width .3s}
+.cmp-row .t{width:44px;flex:0 0 auto;text-align:right;font-weight:600;color:var(--text-2);font-variant-numeric:tabular-nums;font-size:12px}
+.cmp-row.you .nm{color:var(--text);font-weight:600}
+.cmp-row.you .t{color:var(--blue);font-weight:700}
+.cmp-row.you .b i{background:var(--blue)}
+.dual{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dual .group{padding:14px}
+.dual h3{margin:0 0 10px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--text-3)}
+.mini-row{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;color:var(--text-2);font-weight:500;padding:3px 0}
+.mini-row b{color:var(--text);font-size:14px;font-weight:600;letter-spacing:-.2px;font-variant-numeric:tabular-nums}
+.slider-row .top{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;font-weight:500;margin-bottom:2px}
+.slider-row .top .num{color:var(--text-2);font-variant-numeric:tabular-nums;font-weight:600}
+.slider-row input[type=range]{width:100%;height:24px;background:transparent;accent-color:var(--blue);cursor:pointer;display:block}
+.seg{display:flex;background:var(--seg-bg);border-radius:9px;padding:2px;margin-top:8px}
+.seg button{flex:1;background:transparent;border:none;color:var(--text);padding:7px 2px;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;letter-spacing:-.2px;transition:.15s;line-height:1}
+.seg button.on{background:var(--seg-on);box-shadow:var(--seg-shadow)}
+.fbar{height:6px;background:var(--track);border-radius:3px;overflow:hidden;margin-bottom:10px}
+.fbar .f{height:100%;width:0;background:var(--green);transition:width .3s,background .3s;border-radius:3px}
+.hint{font-size:13px;line-height:1.5;color:var(--text-4);background:var(--hint-bg);padding:12px 14px;border-radius:12px;margin-bottom:12px}
+.hint b{color:var(--text);font-weight:600}
+</style>
+</head>
+<body>
+
+<div class="lt">
+<div>
+<h1>🚗 Κουτί με Ρόδες <span id="js" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);flex:0 0 auto"></span></h1>
+<p>Σύρε τα ρυθμιστικά — όλα αλλάζουν αμέσως</p>
+</div>
+<button id="themeBtn" class="theme-btn" aria-label="Αλλαγή θέματος">☀️</button>
+</div>
+
+<div class="sticky">
+<div class="stats">
+<div class="st"><div class="k">0→100</div><div class="v" id="r100">—</div><div class="u">sec</div></div>
+<div class="st"><div class="k">Τελική</div><div class="v" id="rvmax">—</div><div class="u">km/h</div></div>
+<div class="st"><div class="k">Καύσιμο</div><div class="v" id="rfuel">—</div><div class="u">L/100</div></div>
+<div class="st"><div class="k">Φρένο</div><div class="v" id="rbrake">—</div><div class="u">m</div></div>
+</div>
+</div>
+
+<main>
+
+<div class="sect">
+<div class="sect-t">Αναλογίες</div>
+<div class="ratios">
+<div class="ratio"><div class="k">Άλογα / τόνο</div><div class="v" id="hpTon">—</div><div class="u">hp/t</div></div>
+<div class="ratio"><div class="k">Ροπή / τόνο</div><div class="v" id="tqTon" style="color:var(--orange)">—</div><div class="u">Nm/t</div></div>
+<div class="ratio"><div class="k">Κατηγορία</div><div class="v" id="hptClass" style="font-size:15px">—</div><div class="u">&nbsp;</div></div>
+</div>
+</div>
+
+<div class="sect">
+<div class="sect-t">Ρυθμίσεις</div>
+<div class="group" style="margin-bottom:1px">
+<div class="row">
+<div class="lbl">🔧 Αυτόματο μυαλό</div>
+<label class="sw"><input type="checkbox" id="autoMode" checked><span class="sl"></span></label>
+</div>
+</div>
+<div class="grid3">
+<div class="cell"><div class="lbl">🥤 Κυβικά</div><div class="val" id="ccV">1600<span class="u">cc</span></div><input type="range" id="cc" min="600" max="6000" step="50" value="1600"></div>
+<div class="cell"><div class="lbl">🐎 Άλογα</div><div class="val" id="hpV">80<span class="u">hp</span></div><input type="range" id="hp" min="30" max="900" step="5" value="80"></div>
+<div class="cell"><div class="lbl">⚖️ Βάρος</div><div class="val" id="wtV">1300<span class="u">kg</span></div><input type="range" id="wt" min="700" max="2500" step="25" value="1300"></div>
+<div class="cell tq-cell"><div class="lbl">💪 Ροπή</div><div class="val" id="tqV">175<span class="u">Nm</span></div><input type="range" id="tq" min="50" max="900" step="5" value="175"></div>
+<div class="cell dim"><div class="lbl">🛞 Πρόσφυση</div><div class="val" id="grV">0.90<span class="u">μ</span></div><input type="range" id="gr" min="0.30" max="1.20" step="0.01" value="0.90"></div>
+<div class="cell"><div class="lbl">⛽ Τιμή</div><div class="val" id="priceV">1.85<span class="u">€/L</span></div><input type="range" id="price" min="1.30" max="2.50" step="0.01" value="1.85"></div>
+</div>
+<div id="priceJoke">😂 <b>Χαχαχα πολύ καλό…</b> αλλά είμαστε στην Ελλάδα 🇬🇷</div>
+</div>
+
+<div class="sect">
+<div class="sect-t">🎯 Σου μοιάζει με</div>
+<div class="group" id="similarBox">
+<div class="similar empty">Φόρτωση…</div>
+</div>
+</div>
+
+<div class="sect">
+<div class="sect-t">Δοκιμή 0–100</div>
+<div class="group" style="padding:14px">
+<div class="race"><div id="car">🚗</div></div>
+<button class="btn" id="runBtn">▶ Πάτα το γκάζι</button>
+<div class="status" id="warn"></div>
+<div class="cmp">
+<div class="cmp-row you"><div class="nm">Το δικό σου</div><div class="b"><i id="youBar" style="width:0"></i></div><div class="t" id="youNum">—</div></div>
+<div class="cmp-row"><div class="nm">Ferrari SF90</div><div class="b"><i style="width:13%"></i></div><div class="t">2.6s</div></div>
+<div class="cmp-row"><div class="nm">Porsche 911</div><div class="b"><i style="width:19%"></i></div><div class="t">3.8s</div></div>
+<div class="cmp-row"><div class="nm">VW Golf GTI</div><div class="b"><i style="width:31.5%"></i></div><div class="t">6.3s</div></div>
+<div class="cmp-row"><div class="nm">Saab 9-5 2.0T</div><div class="b"><i style="width:42.5%"></i></div><div class="t">8.5s</div></div>
+<div class="cmp-row"><div class="nm">Colt CZ3 1.3<small>(Η Μπέμπα)</small></div><div class="b"><i style="width:55%"></i></div><div class="t">11.0s</div></div>
+<div class="cmp-row"><div class="nm">Fiat Panda</div><div class="b"><i style="width:70%"></i></div><div class="t">14.0s</div></div>
+</div>
+</div>
+</div>
+
+<div class="sect">
+<div class="dual">
+
+<div class="group">
+<h3>🛣️ Ταξίδι</h3>
+<div class="slider-row" style="padding:0 0 8px">
+<div class="top"><span>Απόσταση</span><span class="num" id="distV">100 km</span></div>
+<input type="range" id="dist" min="5" max="100" step="5" value="100">
+</div>
+<div class="seg" id="trafSeg">
+<button data-t="light">🟢</button>
+<button data-t="medium" class="on">🟡</button>
+<button data-t="heavy">🔴</button>
+</div>
+<div class="mini-row" style="justify-content:center;color:var(--text-3);font-size:10px;margin-top:6px;font-weight:600;letter-spacing:-.1px" id="trafLbl">Μέτρια κίνηση</div>
+<div style="margin-top:8px">
+<div class="mini-row"><span>Καύσιμο</span><b id="tripFuel">—</b></div>
+<div class="mini-row"><span>Κόστος</span><b id="tripCost">—</b></div>
+<div class="mini-row"><span>Χρόνος</span><b id="tripTime">—</b></div>
+</div>
+</div>
+
+<div class="group">
+<h3>⛽ Καύσιμο</h3>
+<div class="mini-row" style="margin-bottom:6px"><span>Μέση</span><b id="fuelLbl">—</b></div>
+<div class="fbar"><div class="f" id="fuelFill"></div></div>
+<div class="mini-row"><span>/100 km</span><b id="cost100">—</b></div>
+<div class="mini-row"><span>/έτος</span><b id="costYear">—</b></div>
+<div class="mini-row"><span>CO₂</span><b id="co2">—</b></div>
+</div>
+
+</div>
+</div>
+
+<div class="hint" id="hint"></div>
+
+<div class="hint">
+<b>💡 Τι να δοκιμάσεις:</b> Κράτα σταθερά τα άλογα και άλλαξε <b>μόνο τη ροπή</b> — θα δεις το 0-100 να αλλάζει αμέσως.
+</div>
+
+</main>
+
+<script>
+var S={cc:1600,tq:175,hp:80,wt:1300,gr:0.9,price:1.85,auto:true};
+var GEARS=6,TRIP_DIST=100,TRAFFIC='medium';
+var TR={light:{fuel:0.9,speed:75,lbl:'Χαλαρή κίνηση'},medium:{fuel:1.3,speed:40,lbl:'Μέτρια κίνηση'},heavy:{fuel:1.8,speed:12,lbl:'Βαριά κίνηση'}};
+var similarTimer=null;
+
+var CARS=[
+["Fiat","Panda 1.2",1242,69,940],["Fiat","500 1.2",1242,69,940],["Fiat","Punto 1.2",1242,65,1015],
+["Fiat","Tipo 1.4",1368,95,1275],["Fiat","500X 1.6",1598,110,1320],["Fiat","500L 1.4",1368,95,1250],
+["Opel","Corsa 1.2",1198,75,1080],["Opel","Astra 1.4",1398,100,1290],["Opel","Insignia 1.6",1598,180,1555],
+["Opel","Mokka 1.6",1598,115,1275],["Opel","Zafira 1.8",1796,140,1490],
+["VW","Polo 1.2",1198,70,1067],["VW","Golf 1.4",1395,125,1250],["VW","Golf GTI",1984,245,1400],
+["VW","Passat 1.4",1395,125,1415],["VW","Tiguan 1.4",1395,125,1505],["VW","Touareg 3.0",2967,245,2055],
+["Renault","Clio 1.2",1149,75,1080],["Renault","Megane 1.6",1598,115,1300],["Renault","Captur 0.9",898,90,1180],
+["Renault","Kadjar 1.2",1197,115,1380],["Renault","Zoe EV",1,88,1500],
+["Peugeot","208 1.2",1199,82,1090],["Peugeot","308 1.2",1199,130,1265],["Peugeot","2008 1.2",1199,82,1205],
+["Peugeot","3008 1.2",1199,130,1415],["Peugeot","508 1.6",1598,165,1420],
+["Citroen","C3 1.2",1199,82,1050],["Citroen","C4 1.2",1199,130,1270],["Citroen","C5 Aircross 1.2",1199,130,1410],
+["Citroen","Berlingo 1.2",1199,110,1400],
+["Toyota","Yaris 1.3",1329,99,1035],["Toyota","Yaris Hybrid",1497,100,1085],["Toyota","Auris Hybrid",1798,136,1385],
+["Toyota","Corolla Hybrid",1798,122,1330],["Toyota","RAV4 Hybrid",2487,197,1725],["Toyota","C-HR Hybrid",1798,122,1430],
+["Toyota","Prius",1798,122,1390],["Toyota","GT86",1998,200,1240],["Toyota","Land Cruiser 3.0",2982,177,2295],
+["Toyota","Yaris Cross",1490,116,1245],
+["Honda","Jazz 1.2",1198,90,1070],["Honda","Civic 1.4",1396,100,1250],["Honda","Civic Type R",1996,320,1390],
+["Honda","CR-V 1.6",1597,120,1550],["Honda","HR-V 1.5",1498,130,1280],
+["Nissan","Micra 1.0",998,73,1065],["Nissan","Qashqai 1.2",1197,115,1340],["Nissan","Juke 1.0",999,117,1235],
+["Nissan","X-Trail 1.6",1598,163,1600],["Nissan","Leaf EV",1,150,1580],
+["Hyundai","i10 1.0",998,67,935],["Hyundai","i20 1.2",1248,84,1090],["Hyundai","i30 1.4",1368,100,1245],
+["Hyundai","Tucson 1.6",1591,132,1530],["Hyundai","Kona 1.0",998,120,1300],["Hyundai","Kona EV",1,136,1535],
+["Kia","Picanto 1.0",998,67,935],["Kia","Rio 1.2",1248,84,1110],["Kia","Ceed 1.4",1368,100,1270],
+["Kia","Sportage 1.6",1591,132,1520],["Kia","Stonic 1.0",998,120,1245],["Kia","Niro Hybrid",1580,141,1425],
+["Ford","Fiesta 1.0",998,100,1090],["Ford","Fiesta ST",1497,200,1262],["Ford","Focus 1.0",998,100,1310],
+["Ford","Puma 1.0",998,125,1280],["Ford","Kuga 1.5",1497,150,1590],["Ford","Mustang 5.0",5038,450,1700],
+["Seat","Ibiza 1.0",999,80,1060],["Seat","Leon 1.0",999,115,1180],["Seat","Arona 1.0",999,115,1215],
+["Seat","Ateca 1.4",1395,150,1350],
+["Skoda","Fabia 1.0",999,75,1035],["Skoda","Octavia 1.0",999,115,1235],["Skoda","Octavia RS",1984,245,1465],
+["Skoda","Superb 1.5",1498,150,1435],["Skoda","Kodiaq 1.5",1498,150,1625],["Skoda","Karoq 1.0",999,115,1335],
+["Skoda","Kamiq 1.0",999,95,1230],
+["Audi","A1 1.0",999,95,1160],["Audi","A3 1.4",1395,150,1315],["Audi","A4 2.0 TDI",1968,190,1620],
+["Audi","Q3 1.4",1395,150,1460],["Audi","Q5 2.0 TDI",1968,190,1840],["Audi","TT 2.0",1984,230,1410],
+["BMW","118i",1499,136,1350],["BMW","320i",1998,184,1545],["BMW","320d",1995,190,1615],
+["BMW","M3",2979,431,1730],["BMW","X1 18i",1499,136,1550],["BMW","X3 20d",1995,190,1795],
+["Mercedes","A 180",1332,136,1415],["Mercedes","C 180",1595,156,1530],["Mercedes","C 220d",1950,194,1640],
+["Mercedes","E 200d",1950,150,1770],["Mercedes","GLA 200",1332,156,1505],["Mercedes","GLC 220d",1950,194,1865],
+["Mazda","2 1.5",1496,90,1050],["Mazda","3 2.0",1998,122,1320],["Mazda","6 2.0",1998,145,1495],
+["Mazda","CX-5 2.0",1998,165,1535],["Mazda","MX-5 1.5",1496,131,1058],
+["Suzuki","Swift 1.2",1242,83,1015],["Suzuki","Vitara 1.6",1586,120,1235],["Suzuki","Jimny 1.5",1462,102,1140],
+["Suzuki","Ignis 1.2",1242,90,920],["Suzuki","SX4 S-Cross 1.0",998,111,1285],
+["Mini","Cooper 1.5",1499,136,1265],["Mini","Countryman 1.5",1499,136,1475],
+["Volvo","V40 1.6",1596,120,1415],["Volvo","XC40 T3",1477,156,1580],["Volvo","XC60 D4",1969,190,1875],
+["Volvo","XC90 D5",1969,235,2075],
+["Dacia","Sandero 1.0",998,73,1035],["Dacia","Logan 1.0",998,73,1085],["Dacia","Duster 1.0",999,100,1275],
+["Chevrolet","Aveo 1.2",1229,84,1085],["Chevrolet","Matiz 0.8",796,52,795],
+["Mitsubishi","Colt CZ3 1.3",1332,95,1010],["Mitsubishi","ASX 1.6",1590,117,1350],["Mitsubishi","Lancer 1.8",1798,143,1285],
+["Mitsubishi","Outlander 2.0",1998,150,1585],
+["Alfa Romeo","MiTo 1.4",1368,105,1155],["Alfa Romeo","Giulietta 1.4",1368,120,1320],
+["Alfa Romeo","Giulia 2.0",1995,200,1530],["Alfa Romeo","Stelvio 2.0",1995,280,1755],["Alfa Romeo","4C",1742,240,895],
+["Jeep","Renegade 1.0",999,120,1330],["Jeep","Compass 1.3",1332,150,1505],["Jeep","Wrangler 2.0",1995,272,2015],
+["Smart","fortwo",999,71,780],["Smart","forfour",999,71,975],
+["Saab","9-3 2.0",1998,175,1435],["Saab","9-5 2.0T",1998,220,1600],
+["Lancia","Ypsilon 1.2",1242,69,1005],["Lancia","Delta 1.4",1368,120,1320],
+["Lexus","CT 200h",1798,136,1440],["Lexus","IS 300h",2494,223,1640],["Lexus","NX 300h",2494,197,1810],
+["Subaru","Forester 2.0",1995,150,1495],["Subaru","XV 2.0",1995,156,1415],
+["Porsche","911 Carrera",2981,385,1400],["Porsche","Cayenne 3.0",2995,340,1985],["Porsche","Macan 2.0",1984,245,1770],
+["Tesla","Model 3",1,283,1611],["Tesla","Model Y",1,299,1909]
+];
+
+var RELIABILITY={
+  "Lexus":98,"Toyota":95,"Honda":93,"Mazda":88,"Suzuki":87,"Kia":85,"Hyundai":84,
+  "Subaru":82,"Mitsubishi":80,"Nissan":76,"Skoda":78,"Seat":76,"Volvo":75,
+  "BMW":74,"Audi":73,"Mercedes":72,"Mini":70,"VW":70,"Ford":68,"Opel":68,
+  "Peugeot":65,"Citroen":63,"Dacia":65,"Chevrolet":70,"Porsche":80,
+  "Renault":62,"Fiat":58,"Alfa Romeo":55,"Jeep":50,"Land Rover":48,
+  "Jaguar":50,"Saab":70,"Lancia":60,"Smart":65,"Tesla":65
+};
+function relOf(make){return RELIABILITY[make]||70}
+function relColor(s){return s>=80?'var(--green)':s>=65?'var(--yellow)':s>=50?'var(--orange)':'var(--red)'}
+
+function $(i){return document.getElementById(i)}
+function cl(v,a,b){return Math.max(a,Math.min(b,v))}
+function T(r){var rl=cl(7000-S.cc/2.5,4500,7000),rt=rl*0.45,d=(r-rt)/rt;return r<=rt?S.tq*(0.6+0.4*Math.exp(-Math.pow(d/0.8,2))):S.tq*(0.5+0.5*Math.exp(-Math.pow(d/0.62,2)))}
+function P(r){return T(r)*r/7127}
+function autoSync(){S.tq=cl(Math.round(S.cc*0.11/5)*5,50,900);var rl=cl(7000-S.cc/2.5,4500,7000),p=0;for(var r=800;r<=rl;r+=25){var x=P(r);if(x>p)p=x}S.hp=Math.max(30,Math.round(p/5)*5)}
+
+/* === FIX: torque now affects 0-100 via tqMult === */
+function tqMultiplier(){
+  var tqPerTon = S.tq / (S.wt/1000);
+  var m = Math.pow(130 / Math.max(tqPerTon, 40), 0.30);
+  return cl(m, 0.70, 1.50);
+}
+
+function slide(id,v){
+  v=parseFloat(v);
+  if(isNaN(v))return;
+  S[id]=v;
+  if((id==='tq'||id==='hp')&&S.auto){
+    S.auto=false;
+    var am=$('autoMode');
+    if(am)am.checked=false;
+  }
+  if(id==='cc'&&S.auto)autoSync();
+  render();
+}
+function toggleAuto(on){S.auto=!!on;if(S.auto)autoSync();render()}
+function setTraffic(t){
+  TRAFFIC=t;
+  var bs=document.querySelectorAll('#trafSeg button');
+  for(var i=0;i<bs.length;i++){bs[i].className=bs[i].getAttribute('data-t')===t?'on':''}
+  var lbl=$('trafLbl');
+  if(lbl)lbl.textContent=TR[t].lbl;
+  render();
+}
+function fmtTime(h){if(!isFinite(h)||h<0)return'—';var hh=Math.floor(h),mm=Math.round((h-hh)*60);if(hh===0)return mm+'λ';if(mm===0)return hh+'ώ';return hh+'ώ'+mm+'λ'}
+
+function findSimilar(){
+  var res=[];
+  for(var i=0;i<CARS.length;i++){
+    var c=CARS[i];
+    if(c[2]<200)continue;
+    if(c[2]>S.cc*2.6||c[2]<S.cc/2.6)continue;
+    if(c[3]>S.hp*2.8||c[3]<S.hp/2.8)continue;
+    if(c[4]>S.wt*1.8||c[4]<S.wt/1.8)continue;
+    var dc=Math.abs(c[2]-S.cc)/Math.max(c[2],S.cc);
+    var dh=Math.abs(c[3]-S.hp)/Math.max(c[3],S.hp);
+    var dk=Math.abs(c[4]-S.wt)/Math.max(c[4],S.wt);
+    var d=Math.sqrt(0.30*dc*dc+0.35*dh*dh+0.35*dk*dk);
+    var score=Math.round((1-d)*100);
+    if(score<50)continue;
+    res.push({c:c,s:score});
+  }
+  res.sort(function(a,b){return b.s-a.s});
+  return res.slice(0,3);
+}
+
+function renderSimilarNow(){
+  similarTimer=null;
+  var box=$('similarBox');if(!box)return;
+  var m=findSimilar();
+  if(!m.length){box.innerHTML='<div class="similar empty">Δεν βρέθηκε κοντινό μοντέλο</div>';return;}
+  var html='';var medals=['🥇','🥈','🥉'];
+  for(var i=0;i<m.length;i++){
+    var c=m[i].c;var rel=relOf(c[0]);var rc=relColor(rel);
+    html+='<div class="similar"><div class="r">'+medals[i]+'</div><div class="info"><div class="name">'+c[0]+' '+c[1]+'</div><div class="spec">'+c[2]+'cc · '+c[3]+'hp · '+c[4]+'kg</div><div class="rel"><span class="rellbl">Αξιοπιστία</span><div class="relbar"><div class="relfill" style="width:'+rel+'%;background:'+rc+'"></div></div><span class="relnum">'+rel+'</span></div></div><div class="pct">'+m[i].s+'%</div></div>';
+  }
+  box.innerHTML=html;
+}
+function renderSimilar(){
+  if(similarTimer)clearTimeout(similarTimer);
+  similarTimer=setTimeout(renderSimilarNow,80);
+}
+
+function render(){
+if(!$('ccV'))return;
+$('ccV').innerHTML=S.cc+'<span class="u">cc</span>';
+$('tqV').innerHTML=S.tq+'<span class="u">Nm</span>';
+$('hpV').innerHTML=S.hp+'<span class="u">hp</span>';
+$('wtV').innerHTML=S.wt+'<span class="u">kg</span>';
+$('grV').innerHTML=S.gr.toFixed(2)+'<span class="u">μ</span>';
+$('priceV').innerHTML=S.price.toFixed(2)+'<span class="u">€/L</span>';
+$('tq').value=S.tq;$('hp').value=S.hp;
+
+var pj=$('priceJoke');
+if(pj)pj.style.display=S.price<1.70?'block':'none';
+
+/* === FIX: torque multiplier === */
+var tqM = tqMultiplier();
+var t100 = (S.wt/S.hp) * 1.05 * tqM * (1-(GEARS-5)*0.022);
+
+var ta=S.gr*9.81*0.6,tg=27.78/ta,spin=t100<tg;if(spin)t100=tg;t100=cl(t100,2,45);
+
+/* Torque also affects vmax a bit */
+var tqPerTon = S.tq / (S.wt/1000);
+var tqVmaxBonus = tqPerTon>200?0.03:tqPerTon>130?0.015:-0.01;
+var vmax = cl(175*Math.pow(S.hp/100,1/3.5)*(1+(GEARS-5)*0.008+tqVmaxBonus),110,420);
+
+/* Torque slightly affects fuel */
+var tqFuel = (tqPerTon-130)/1500;
+var fuel = cl(3+S.cc/600+S.wt/800+S.hp/300-(GEARS-5)*0.15+tqFuel,3.2,35);
+var brake=(27.78*27.78)/(2*S.gr*9.81),hpt=S.hp/(S.wt/1000),tqt=S.tq/(S.wt/1000);
+
+$('r100').textContent=t100.toFixed(1);
+$('rvmax').textContent=Math.round(vmax);
+$('rfuel').textContent=fuel.toFixed(1);
+$('rbrake').textContent=Math.round(brake);
+$('hpTon').textContent=Math.round(hpt);
+$('tqTon').textContent=Math.round(tqt);
+$('hptClass').textContent=hpt>300?'Supercar':hpt>180?'Σπορ':hpt>120?'Γρήγορο':hpt>80?'Νορμάλ':'Αργό';
+
+var fp=cl(fuel/20*100,5,100);
+$('fuelFill').style.width=fp+'%';
+$('fuelFill').style.background=fuel<6?'var(--green)':fuel<10?'var(--yellow)':'var(--red)';
+$('fuelLbl').textContent=fuel.toFixed(1)+' L/100';
+$('cost100').textContent=(fuel*S.price).toFixed(1)+' €';
+$('costYear').textContent=Math.round(fuel*S.price*150)+' €';
+$('co2').textContent=Math.round(fuel*23.1)+' g/km';
+
+var tr=TR[TRAFFIC];
+var tripL=TRIP_DIST/100*fuel*tr.fuel;
+var tripCost=tripL*S.price;
+var tripHours=TRIP_DIST/tr.speed;
+$('distV').textContent=TRIP_DIST+' km';
+$('tripFuel').textContent=tripL.toFixed(1)+' L';
+$('tripCost').textContent=tripCost.toFixed(2)+' €';
+$('tripTime').textContent=fmtTime(tripHours);
+
+$('youBar').style.width=cl(t100/20*100,3,100)+'%';
+$('youNum').textContent=t100.toFixed(1)+'s';
+var wn=$('warn');
+if(spin){wn.className='status no';wn.innerHTML='🛞 Σπινάρει — η δύναμη χάνεται στο λάστιχο';}
+else{wn.className='status ok';wn.innerHTML='✓ Καλή πρόσφυση';}
+
+/* Hint mentions torque now */
+var hintMsg;
+if(tqt>250){hintMsg='💪 <b>Πολλή ροπή ('+Math.round(tqt)+' Nm/t).</b> Δυνατό τράβηγμα από χαμηλά — το 0-100 βελτιώθηκε.';}
+else if(tqt<90){hintMsg='⚠️ <b>Λίγη ροπή ('+Math.round(tqt)+' Nm/t).</b> Θα δυσκολεύεται στις ανηφόρες και στην εκκίνηση.';}
+else if(hpt>200){hintMsg='🏎️ <b>Πολύ δυνατό.</b> Το εμπόδιο δεν είναι η δύναμη, αλλά η πρόσφυση.';}
+else if(fuel>14){hintMsg='⛽ <b>Καίει πολύ.</b> Κατέβασε τα κυβικά στα 1600.';}
+else if(S.gr<0.5){hintMsg='🌧️ <b>Δεν πατάει καλά.</b> Με πρόσφυση '+S.gr.toFixed(2)+', το φρένο θέλει '+Math.round(brake)+' μέτρα.';}
+else if(t100>13){hintMsg='🐢 <b>Λίγο νωθό.</b> Δοκίμασε 200 άλογα ή κατέβασε βάρος στα 900 kg.';}
+else{hintMsg='👍 <b>Ισορροπημένο.</b> Δοκίμασε 3000 κυβικά με το Αυτόματο μυαλό.';}
+$('hint').innerHTML=hintMsg;
+
+renderSimilar();
+}
+
+var animT=null;
+function runTest(){
+var car=$('car');if(!car)return;
+var ml=car.parentElement.clientWidth-34;if(ml<10)return;
+var t100=parseFloat($('r100').textContent)||10;
+if(animT)cancelAnimationFrame(animT);car.style.left='8px';
+var dur=t100*1000,st=Date.now();
+function step(){var t=cl((Date.now()-st)/dur,0,1);car.style.left=(8+Math.pow(t,1.45)*ml)+'px';if(t<1)animT=requestAnimationFrame(step)}
+animT=requestAnimationFrame(step);
+}
+
+function setTheme(mode){
+  document.documentElement.setAttribute('data-theme',mode);
+  try{localStorage.setItem('theme',mode)}catch(e){}
+  var b=$('themeBtn');
+  if(b)b.textContent=mode==='light'?'🌙':'☀️';
+  var meta=document.querySelector('meta[name="theme-color"]');
+  if(meta)meta.setAttribute('content',mode==='light'?'#f2f2f7':'#000000');
+}
+
+function bind(){
+if(!$('js'))return;
+$('js').style.background='var(--green)';
+['cc','tq','hp','wt','gr','price'].forEach(function(id){
+var el=$(id);if(!el)return;
+el.addEventListener('input',function(){slide(id,this.value)});
+el.addEventListener('change',function(){slide(id,this.value)});
+});
+var am=$('autoMode');if(am)am.addEventListener('change',function(){toggleAuto(this.checked)});
+var bt=$('runBtn');if(bt)bt.addEventListener('click',runTest);
+var d=$('dist');
+if(d){
+  d.addEventListener('input',function(){TRIP_DIST=parseFloat(this.value);render()});
+  d.addEventListener('change',function(){TRIP_DIST=parseFloat(this.value);render()});
+}
+var bs=document.querySelectorAll('#trafSeg button');
+for(var i=0;i<bs.length;i++){bs[i].addEventListener('click',function(){setTraffic(this.getAttribute('data-t'))})}
+var tb=$('themeBtn');
+if(tb){
+  var cur=document.documentElement.getAttribute('data-theme')||'dark';
+  tb.textContent=cur==='light'?'🌙':'☀️';
+  tb.addEventListener('click',function(){
+    var n=(document.documentElement.getAttribute('data-theme')||'dark')==='light'?'dark':'light';
+    setTheme(n);
+  });
+}
+var lbl=$('trafLbl');
+if(lbl)lbl.textContent=TR[TRAFFIC].lbl;
+var bss=document.querySelectorAll('#trafSeg button');
+for(var j=0;j<bss.length;j++){bss[j].className=bss[j].getAttribute('data-t')===TRAFFIC?'on':''}
+autoSync();
+render();
+if(similarTimer)clearTimeout(similarTimer);
+renderSimilarNow();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bind);else bind();
+</script>
+</body>
+</html>
