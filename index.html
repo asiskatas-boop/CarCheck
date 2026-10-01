@@ -3,224 +3,418 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#fffaf0">
+<meta name="description" content="Φτιάξε το αμάξι σου, δες πόσο γρήγορο είναι.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23fffaf0'/><text x='50' y='72' font-size='62' text-anchor='middle'>🚗</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <title>Κουτί με Ρόδες</title>
-<script>(function(){try{var t=localStorage.getItem('t');if(!t&&matchMedia('(prefers-color-scheme:light)').matches)t='l';if(t)document.documentElement.setAttribute('data-theme',t==='l'?'light':'dark')}catch(e){}})();</script>
 <style>
-:root{--bg:#000;--sf:#1c1c1e;--sf2:rgba(28,28,30,.8);--tx:#fff;--tx2:rgba(235,235,245,.6);--tx3:rgba(235,235,245,.5);--sep:rgba(84,84,88,.65);--sepl:rgba(84,84,88,.4);--tr:rgba(84,84,88,.45);--sw:#39393d;--gr:#30d158;--rd:#ff453a;--yl:#ffd60a;--og:#ff9f0a;--bl:#0a84ff;--dim:#636366;--hb:rgba(118,118,128,.18)}
-[data-theme=light]{--bg:#f2f2f7;--sf:#fff;--sf2:rgba(255,255,255,.9);--tx:#000;--tx2:rgba(60,60,67,.6);--tx3:rgba(60,60,67,.5);--sep:rgba(60,60,67,.29);--sepl:rgba(60,60,67,.18);--tr:rgba(120,120,128,.2);--sw:#e5e5ea;--gr:#34c759;--rd:#ff3b30;--yl:#ff9500;--og:#ff9500;--bl:#007aff;--dim:#8e8e93;--hb:rgba(120,120,128,.12)}
-[data-theme=light] .sticky{background:rgba(28,28,30,.85);border-bottom-color:rgba(84,84,88,.4)}
-[data-theme=light] .sticky .k,[data-theme=light] .sticky .u{color:rgba(235,235,245,.5)}
-[data-theme=light] .sticky .v{color:#fff}
-[data-theme=light] .sticky .st{background:rgba(28,28,30,.6)}
+:root{
+  --canvas:#fffaf0;--soft:#faf5e8;--card:#f5f0e0;--strong:#ebe6d6;
+  --ink:#0a0a0a;--body:#3a3a3a;--body-strong:#1a1a1a;--muted:#6a6a6a;--muted-soft:#9a9a9a;
+  --hairline:#e5e5e5;--hairline-soft:#f0f0f0;
+  --pink:#ff4d8b;--teal:#1a3a3a;--lavender:#b8a4ed;--peach:#ffb084;--ochre:#e8b94a;--mint:#a4d4c5;--coral:#ff6b5a;
+  --success:#22c55e;--warning:#f59e0b;--error:#ef4444;
+}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.3 -apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-bottom:30px;overscroll-behavior-y:none}
-.lt{padding:calc(16px + env(safe-area-inset-top)) 20px 12px;display:flex;justify-content:space-between;gap:12px}
-.lt h1{margin:0;font-size:30px;font-weight:700;letter-spacing:-.8px;line-height:1.15;display:flex;align-items:center;gap:8px}
-.lt p{margin:4px 0 0;font-size:13px;color:var(--tx2)}
-#js{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--rd)}
-.tbtn{background:var(--sf);border:.5px solid var(--sepl);border-radius:50%;width:44px;height:44px;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
-.sticky{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:.5px solid var(--sepl);padding:calc(8px + env(safe-area-inset-top)) 12px 10px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.st{background:var(--sf2);border-radius:12px;padding:8px 4px;text-align:center;min-width:0}
-.st .k{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--tx3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.st .v{font-size:20px;font-weight:700;letter-spacing:-.8px;line-height:1.05;margin-top:2px}
-.st .u{font-size:9px;color:var(--tx3);margin-top:1px}
-main{padding:16px 16px 0}
-.sect{margin-bottom:20px}
-.stitle{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--tx3);margin:0 0 8px 4px}
-.grp{background:var(--sf);border-radius:14px;overflow:hidden}
-.row{display:flex;align-items:center;justify-content:space-between;padding:11px 16px;gap:12px;min-height:44px;font-size:15px;font-weight:500}
-.ratios{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--sep);border-radius:14px;overflow:hidden}
-.ratio{background:var(--sf);padding:13px 8px;text-align:center}
-.ratio .k{font-size:10px;font-weight:600;letter-spacing:.4px;color:var(--tx3);text-transform:uppercase;margin-bottom:4px}
-.ratio .v{font-size:21px;font-weight:700;letter-spacing:-.6px;line-height:1}
-.ratio .u{font-size:10px;color:var(--tx3);margin-top:2px}
-.sw{position:relative;width:51px;height:31px;flex:0 0 auto}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--canvas);color:var(--body);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:16px;font-weight:400;line-height:1.55;letter-spacing:0;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  padding-bottom:calc(40px + env(safe-area-inset-bottom));
+}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:6px}
+.wrap{max-width:640px;margin:0 auto;padding:0 20px}
+
+.nav{padding:16px 0 8px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--ink);text-decoration:none;letter-spacing:-.1px}
+.brand .mark{width:28px;height:28px;background:var(--ink);color:var(--canvas);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px}
+.tag{font-size:12px;font-weight:600;color:var(--muted);background:var(--card);padding:4px 12px;border-radius:9999px;letter-spacing:.4px}
+
+.hero{padding:32px 0 48px}
+.hero-split{display:grid;grid-template-columns:1fr;gap:24px;align-items:center}
+@media(min-width:640px){.hero-split{grid-template-columns:7fr 5fr}}
+.hero h1{
+  font-family:'Inter',sans-serif;font-weight:500;color:var(--ink);
+  font-size:clamp(4rem,20vw,6.5rem);
+  letter-spacing:-.035em;line-height:1;margin:0 0 12px;
+  font-variant-numeric:tabular-nums;
+}
+.hero h1 .unit{font-size:.28em;font-weight:500;color:var(--muted);letter-spacing:-.01em;margin-left:6px}
+.hero p{margin:0 0 20px;font-size:16px;color:var(--muted);font-weight:400;letter-spacing:-.1px;line-height:1.5}
+.hero p b{color:var(--ink);font-weight:600}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--ink);color:#fff;border:none;
+  padding:12px 20px;height:44px;border-radius:12px;
+  font-family:inherit;font-size:14px;font-weight:600;letter-spacing:0;
+  cursor:pointer;text-decoration:none;transition:background .15s;
+}
+.hero-cta:hover{background:#1f1f1f}
+.hero-cta:active{transform:scale(.98)}
+
+.artifact{
+  background:var(--soft);border-radius:24px;padding:32px 24px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:16px;min-height:220px;position:relative;overflow:hidden;
+}
+.artifact .emoji{font-size:96px;line-height:1;filter:drop-shadow(0 12px 24px rgba(0,0,0,.1))}
+.artifact .chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.chip{background:var(--canvas);color:var(--ink);font-size:12px;font-weight:600;padding:6px 12px;border-radius:9999px;letter-spacing:-.05px}
+.chip.ochre{background:var(--ochre)}
+.chip.peach{background:var(--peach)}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:48px}
+.stat{background:var(--card);border-radius:16px;padding:14px 12px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.stat .k{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.6px;text-transform:uppercase}
+.stat .v{font-size:22px;font-weight:500;color:var(--ink);letter-spacing:-.04em;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat .u{font-size:11px;font-weight:500;color:var(--muted-soft);letter-spacing:0}
+
+.section{padding-bottom:48px}
+.section-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;gap:12px}
+.section-head h2{margin:0;font-size:24px;font-weight:600;color:var(--ink);letter-spacing:-.3px;line-height:1.3}
+.section-head .sub{font-size:13px;font-weight:500;color:var(--muted)}
+
+.card{background:var(--card);border-radius:24px;padding:20px}
+
+.tgl{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;background:var(--canvas);border-radius:16px;margin-bottom:16px}
+.tgl b{display:block;font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-.1px}
+.tgl small{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.sw{position:relative;width:48px;height:28px;flex:0 0 auto}
 .sw input{opacity:0;width:0;height:0;position:absolute}
-.sw .sl{position:absolute;inset:0;background:var(--sw);border-radius:31px;cursor:pointer;transition:.25s}
-.sw .sl:before{content:"";position:absolute;height:27px;width:27px;left:2px;top:2px;background:#fff;border-radius:50%;transition:.25s;box-shadow:0 2px 5px rgba(0,0,0,.25)}
-.sw input:checked+.sl{background:var(--gr)}
-.sw input:checked+.sl:before{transform:translateX(20px)}
-.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--sep);border-radius:14px;overflow:hidden}
-.cell{background:var(--sf);padding:10px 8px 12px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0}
-.cell .lbl{font-size:10px;font-weight:600;color:var(--tx2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
-.cell .val{font-size:15px;font-weight:700;letter-spacing:-.4px;white-space:nowrap;font-variant-numeric:tabular-nums}
-.cell .val .u{font-size:10px;color:var(--tx3);margin-left:1px}
-.cell input{width:100%;height:24px;margin:0;background:transparent;accent-color:var(--bl);cursor:pointer;display:block}
-.cell.tq .val{color:var(--og)}.cell.tq input{accent-color:var(--og)}
-.cell.dim .val{color:var(--tx2)}.cell.dim input{accent-color:var(--dim)}
-#pj{display:none;font-size:13px;color:var(--yl);text-align:center;padding:11px 14px;margin-top:8px;background:rgba(255,214,10,.1);border:.5px solid rgba(255,214,10,.3);border-radius:12px;font-weight:500}
-#pj b{color:var(--tx)}
-.sim{display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:13px}
-.sim+.sim{border-top:.5px solid var(--sep)}
-.sim .r{width:22px;font-size:16px;text-align:center;color:var(--tx3)}
-.sim .in{flex:1;min-width:0}
-.sim .nm{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sim .sp{font-size:11px;color:var(--tx3);margin-top:1px}
-.sim .rel{display:flex;align-items:center;gap:5px;margin-top:4px;font-size:9px}
-.sim .rlbl{color:var(--tx3);text-transform:uppercase;font-weight:600}
-.sim .rbar{flex:1;height:3px;background:var(--tr);border-radius:2px;overflow:hidden}
-.sim .rfill{height:100%;border-radius:2px}
-.sim .rnum{color:var(--tx3);font-weight:700;width:24px;text-align:right}
-.sim .pct{font-size:15px;font-weight:700;color:var(--bl)}
-.sim.empty{padding:16px;text-align:center;color:var(--tx3);font-size:13px;display:block}
-.race{position:relative;height:44px;background:#0a0a0c;border-radius:12px;overflow:hidden;margin-bottom:10px}
-[data-theme=light] .race{background:#e5e5ea}
-#car{position:absolute;left:8px;bottom:8px;font-size:24px}
-.btn{display:block;width:100%;border:none;border-radius:12px;background:var(--bl);color:#fff;padding:14px;font-size:17px;font-weight:600;font-family:inherit;cursor:pointer}
-.status{font-size:13px;font-weight:500;text-align:center;margin-top:10px;min-height:18px;color:var(--tx2)}
-.status.ok{color:var(--gr)}.status.no{color:var(--rd)}
-.cmp{margin-top:14px}
-.cr{display:flex;align-items:center;gap:10px;padding:4px 0;font-size:13px}
-.cr .n{width:100px;text-align:right;color:var(--tx2);font-weight:500;line-height:1.15}
-.cr .n small{display:block;font-size:10px;color:#ff375f;font-weight:600}
-.cr .b{flex:1;height:6px;background:var(--tr);border-radius:3px;overflow:hidden;position:relative}
-.cr .b i{position:absolute;left:0;top:0;bottom:0;background:rgba(235,235,245,.35);border-radius:3px}
-.cr .t{width:44px;text-align:right;font-weight:600;color:var(--tx2);font-size:12px}
-.cr.you .n{color:var(--tx);font-weight:600}.cr.you .t{color:var(--bl);font-weight:700}
-.cr.you .b i{background:var(--bl)}
+.sw .sl{position:absolute;inset:0;background:#d9d4c4;border-radius:9999px;cursor:pointer;transition:.2s}
+.sw .sl::before{content:"";position:absolute;width:22px;height:22px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.sw input:checked+.sl{background:var(--ink)}
+.sw input:checked+.sl::before{transform:translateX(20px)}
+
+.slr{padding:14px 0}
+.slr+.slr{border-top:1px solid var(--hairline)}
+.sl-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:8px}
+.sl-h .lbl{font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-.1px}
+.sl-h .val{font-size:18px;font-weight:500;color:var(--ink);letter-spacing:-.03em;font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:4px}
+.sl-h .val small{font-size:12px;font-weight:500;color:var(--muted)}
+.sl-h .val.orange{color:var(--coral)}
+.sl-tip{font-size:13px;color:var(--muted);font-weight:400;line-height:1.45}
+.sl-tip .clown{font-size:16px;line-height:1;vertical-align:-2px;margin-left:4px}
+
+input[type=range]{
+  -webkit-appearance:none;appearance:none;width:100%;height:32px;background:transparent;cursor:pointer;display:block;
+}
+input[type=range]::-webkit-slider-runnable-track{height:6px;background:var(--strong);border-radius:9999px;border:none}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:22px;height:22px;background:var(--ink);border:3px solid var(--card);
+  border-radius:50%;margin-top:-8px;box-shadow:0 1px 4px rgba(0,0,0,.15);
+}
+input[type=range]::-moz-range-track{height:6px;background:var(--strong);border-radius:9999px;border:none}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;background:var(--ink);border:3px solid var(--card);border-radius:50%}
+
+.feat{border-radius:24px;padding:24px;color:var(--ink)}
+.feat.pink{background:var(--pink);color:#fff}
+.feat.lavender{background:var(--lavender)}
+.feat.peach{background:var(--peach)}
+.feat.ochre{background:var(--ochre)}
+.feat.mint{background:var(--mint)}
+.feat.coral{background:var(--coral);color:#fff}
+
+.feat h3{margin:0 0 4px;font-size:22px;font-weight:600;letter-spacing:-.4px;line-height:1.2}
+.feat .sub{margin:0 0 16px;font-size:14px;font-weight:500;opacity:.75;letter-spacing:-.05px}
+
+.lane{margin-bottom:16px}
+.lane-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;font-size:14px;font-weight:600;letter-spacing:-.1px}
+.lane-head .num{font-variant-numeric:tabular-nums;font-weight:500}
+.lane-track{position:relative;height:28px;background:rgba(255,255,255,.45);border-radius:9999px;overflow:hidden}
+.lane-fill{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--ink);border-radius:9999px}
+.lane-marker{position:absolute;left:0;top:50%;transform:translate(-50%,-50%);font-size:20px;z-index:2}
+.lane.ghost .lane-fill{background:rgba(0,0,0,.25)}
+
+.btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;background:var(--ink);color:#fff;border:none;
+  padding:14px 20px;height:52px;border-radius:14px;
+  font-family:inherit;font-size:15px;font-weight:600;letter-spacing:-.1px;
+  cursor:pointer;transition:background .15s,transform .1s;margin-top:8px;
+}
+.btn:hover{background:#1f1f1f}
+.btn:active{transform:scale(.98)}
+.btn:disabled{background:#9a9a9a;cursor:not-allowed}
+.res{margin-top:12px;font-size:13px;font-weight:500;letter-spacing:-.05px;opacity:.85;text-align:center;min-height:18px}
+.res b{font-weight:600}
+.res .hit{
+  display:inline-block;
+  background:var(--success);
+  color:#fff;
+  padding:2px 8px;
+  border-radius:6px;
+  font-weight:700;
+}
+
+.sim-row{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;margin-bottom:12px;padding:20px;border-radius:24px}
+.sim-row:last-child{margin-bottom:0}
+.sim-row.pink{background:var(--pink);color:#fff}
+.sim-row.peach{background:var(--peach);color:var(--ink)}
+.sim-row.lavender{background:var(--lavender);color:var(--ink)}
+.sim-row.ochre{background:var(--ochre);color:var(--ink)}
+.sim-row.mint{background:var(--mint);color:var(--ink)}
+.sim-medal{font-size:28px;line-height:1}
+.sim-body{min-width:0}
+.sim-nm{font-size:16px;font-weight:600;letter-spacing:-.2px;line-height:1.25}
+.sim-sp{font-size:13px;font-weight:500;opacity:.75;margin-top:3px;font-variant-numeric:tabular-nums}
+.sim-rel{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:11px;font-weight:600;letter-spacing:.3px;text-transform:uppercase;opacity:.8}
+.sim-rel .bar{flex:1;max-width:100px;height:4px;background:rgba(0,0,0,.15);border-radius:9999px;overflow:hidden;position:relative}
+.sim-row.pink .sim-rel .bar{background:rgba(255,255,255,.3)}
+.sim-rel .bar i{position:absolute;left:0;top:0;bottom:0;background:currentColor;border-radius:9999px}
+.sim-pct{font-size:32px;font-weight:500;letter-spacing:-.045em;line-height:1;font-variant-numeric:tabular-nums}
+.sim-pct small{font-size:14px;font-weight:500;opacity:.6;margin-left:2px}
+.sim-empty{padding:32px 20px;text-align:center;font-size:14px;color:var(--muted);background:var(--card);border-radius:24px}
+
 .dual{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.dual .grp{padding:14px}
-.dual h3{margin:0 0 10px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--tx3)}
-.mr{display:flex;justify-content:space-between;font-size:12px;color:var(--tx2);font-weight:500;padding:3px 0}
-.mr b{color:var(--tx);font-size:14px;font-weight:600}
-.seg{display:flex;background:rgba(118,118,128,.24);border-radius:9px;padding:2px;margin-top:8px}
-[data-theme=light] .seg{background:rgba(120,120,128,.12)}
-.seg button{flex:1;background:transparent;border:none;color:var(--tx);padding:7px 2px;border-radius:7px;font-size:14px;cursor:pointer;font-family:inherit;line-height:1}
-.seg button.on{background:#636366}
-[data-theme=light] .seg button.on{background:#fff}
-.sr{padding:0 0 8px}
-.sr .top{display:flex;justify-content:space-between;font-size:13px;font-weight:500;margin-bottom:2px}
-.sr .top .num{color:var(--tx2);font-weight:600}
-.sr input{width:100%;height:24px;background:transparent;accent-color:var(--bl);cursor:pointer;display:block}
-.fbar{height:6px;background:var(--tr);border-radius:3px;overflow:hidden;margin-bottom:10px}
-.fbar .f{height:100%;width:0;background:var(--gr);border-radius:3px}
-.hint{font-size:13px;line-height:1.5;color:var(--tx2);background:var(--hb);padding:12px 14px;border-radius:12px;margin-bottom:12px}
-.hint b{color:var(--tx);font-weight:600}
+@media(max-width:420px){.dual{grid-template-columns:1fr}}
+.dual .feat{padding:24px}
+.dual .feat h3{font-size:18px;margin-bottom:12px}
+.dist-head{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;font-weight:600;margin-bottom:4px}
+.dist-head .v{font-weight:500;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.panel input[type=range]{height:26px}
+.panel input[type=range]::-webkit-slider-runnable-track{background:rgba(0,0,0,.15);height:5px}
+.panel input[type=range]::-webkit-slider-thumb{background:var(--ink);border-color:rgba(255,255,255,.5);width:18px;height:18px;margin-top:-7px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin:12px 0 10px;background:rgba(0,0,0,.08);border-radius:12px;padding:4px}
+.seg button{background:transparent;border:none;color:inherit;padding:8px 4px;border-radius:8px;font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;transition:.15s;line-height:1}
+.seg button.on{background:var(--canvas);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.tr-lbl{text-align:center;font-size:12px;font-weight:500;opacity:.7;margin-bottom:14px}
+.mr{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;font-size:13px;font-weight:500;letter-spacing:-.05px}
+.mr span{opacity:.75}
+.mr b{font-size:16px;font-weight:600;letter-spacing:-.2px;font-variant-numeric:tabular-nums;color:var(--ink)}
+.fbar{height:6px;background:rgba(0,0,0,.12);border-radius:9999px;overflow:hidden;margin:8px 0 12px}
+.fbar .f{height:100%;width:0;background:var(--ink);border-radius:9999px;transition:width .35s,background .3s}
+
+.falert{
+  display:none;background:rgba(255,107,90,.15);border:2px solid var(--coral);border-radius:16px;
+  padding:14px 16px;margin-top:12px;font-size:14px;color:var(--ink);line-height:1.5;
+}
+.falert.show{display:block}
+.falert .ttl{font-size:13px;font-weight:700;color:var(--coral);letter-spacing:.4px;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.falert p{margin:0;font-size:14px;letter-spacing:-.05px;color:var(--body-strong);line-height:1.5}
+.falert p b{color:var(--ink);font-weight:600}
+.falert .rec{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,107,90,.35);font-size:13px;color:var(--muted);line-height:1.5}
+
+.hint{background:var(--card);border-radius:24px;padding:20px 24px;font-size:14px;color:var(--body);line-height:1.55;letter-spacing:-.05px}
+.hint b{color:var(--ink);font-weight:600}
+.hint .fuel-warn{
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid rgba(255,107,90,.3);
+  color:var(--coral);
+  font-weight:500;
+}
+.hint .fuel-warn b{color:var(--coral);font-weight:700}
+
+.ratios{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.rat{background:var(--card);border-radius:16px;padding:16px 12px;text-align:center}
+.rat .k{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;margin-bottom:8px}
+.rat .v{font-size:26px;font-weight:500;color:var(--ink);letter-spacing:-.045em;line-height:1;font-variant-numeric:tabular-nums}
+.rat .u{font-size:11px;font-weight:500;color:var(--muted-soft);margin-top:6px}
 </style>
 </head>
 <body>
 
-<div class="lt">
+<div class="wrap">
+
+<nav class="nav">
+<a href="#" class="brand"><span class="mark">🚗</span> Κουτί με Ρόδες</a>
+<span class="tag">v2.6</span>
+</nav>
+
+<section class="hero">
+<div class="hero-split">
 <div>
-<h1>🚗 Κουτί με Ρόδες <span id="js"></span></h1>
-<p>Σύρε τα ρυθμιστικά — όλα αλλάζουν αμέσως</p>
+<h1 id="heroNum">—<span class="unit">sec</span></h1>
+<p>0 → 100 km/h. <b id="heroCap">Φτιάξε το αμάξι σου →</b></p>
+<a href="#controls" class="hero-cta">Άλλαξε προδιαγραφές ↓</a>
 </div>
-<button id="tbtn" class="tbtn">☀️</button>
+<div class="artifact">
+<span class="emoji" id="heroEmoji">🚗</span>
+<div class="chips">
+<span class="chip" id="chipHp">80 hp</span>
+<span class="chip ochre" id="chipTq">176 Nm</span>
+<span class="chip peach" id="chipWt">1300 kg</span>
 </div>
+</div>
+</div>
+</section>
 
-<div class="sticky">
 <div class="stats">
-<div class="st"><div class="k">0→100</div><div class="v" id="r100">—</div><div class="u">sec</div></div>
-<div class="st"><div class="k">Τελική</div><div class="v" id="rvmax">—</div><div class="u">km/h</div></div>
-<div class="st"><div class="k">Καύσιμο</div><div class="v" id="rfuel">—</div><div class="u">L/100</div></div>
-<div class="st"><div class="k">Φρένο</div><div class="v" id="rbrake">—</div><div class="u">m</div></div>
-</div>
-</div>
-
-<main>
-
-<div class="sect">
-<div class="stitle">Αναλογίες</div>
-<div class="ratios">
-<div class="ratio"><div class="k">Άλογα / τόνο</div><div class="v" id="hpt">—</div><div class="u">hp/t</div></div>
-<div class="ratio"><div class="k">Ροπή / τόνο</div><div class="v" id="tqt" style="color:var(--og)">—</div><div class="u">Nm/t</div></div>
-<div class="ratio"><div class="k">Κατηγορία</div><div class="v" id="cls" style="font-size:15px">—</div><div class="u">&nbsp;</div></div>
-</div>
+<div class="stat"><div class="k">Τελική</div><div class="v" id="rvmax">—</div><div class="u">km/h</div></div>
+<div class="stat"><div class="k">Καύσιμο</div><div class="v" id="rfuel">—</div><div class="u">L/100</div></div>
+<div class="stat"><div class="k">Φρένο</div><div class="v" id="rbrake">—</div><div class="u">μέτρα</div></div>
+<div class="stat"><div class="k">Ροπή</div><div class="v" id="rtq">—</div><div class="u">kg·m/t</div></div>
 </div>
 
-<div class="sect">
-<div class="stitle">Ρυθμίσεις</div>
-<div class="grp" style="margin-bottom:1px">
-<div class="row"><span>🔧 Αυτόματο μυαλό</span>
-<label class="sw"><input type="checkbox" id="am" checked><span class="sl"></span></label></div>
+<section class="section">
+<div class="section-head"><h2>Ανάλυση</h2><span class="sub">Ζωντανά</span></div>
+<div class="hint" id="hint"></div>
+</section>
+
+<section class="section" id="controls">
+<div class="section-head"><h2>Προδιαγραφές</h2><span class="sub">Σύρε για αλλαγή</span></div>
+<div class="card">
+
+<div class="tgl">
+<div>
+<b>Αυτόματο</b>
+<small>Κυβικά, άλογα & ροπή προσαρμόζονται</small>
 </div>
-<div class="g3">
-<div class="cell"><div class="lbl">🥤 Κυβικά</div><div class="val" id="ccV">1600<span class="u">cc</span></div><input type="range" id="cc" min="600" max="3500" step="50" value="1600"></div>
-<div class="cell"><div class="lbl">🐎 Άλογα</div><div class="val" id="hpV">80<span class="u">hp</span></div><input type="range" id="hp" min="30" max="900" step="5" value="80"></div>
-<div class="cell"><div class="lbl">⚖️ Βάρος</div><div class="val" id="wtV">1300<span class="u">kg</span></div><input type="range" id="wt" min="700" max="2500" step="25" value="1300"></div>
-<div class="cell tq"><div class="lbl">💪 Ροπή</div><div class="val" id="tqV">175<span class="u">Nm</span></div><input type="range" id="tq" min="50" max="900" step="5" value="175"></div>
-<div class="cell dim"><div class="lbl">🛞 Πρόσφυση</div><div class="val" id="grV">0.90<span class="u">μ</span></div><input type="range" id="gr" min="0.30" max="1.20" step="0.01" value="0.90"></div>
-<div class="cell"><div class="lbl">⛽ Τιμή</div><div class="val" id="prV">1.85<span class="u">€/L</span></div><input type="range" id="pr" min="1.30" max="2.50" step="0.01" value="1.85"></div>
-</div>
-<div id="pj">😂 <b>Χαχαχα πολύ καλό…</b> αλλά είμαστε στην Ελλάδα 🇬🇷</div>
+<label class="sw"><input type="checkbox" id="am" checked><span class="sl"></span></label>
 </div>
 
-<div class="sect">
-<div class="stitle">🎯 Σου μοιάζει με</div>
-<div class="grp" id="simBox"><div class="sim empty">Φόρτωση…</div></div>
+<div class="slr">
+<div class="sl-h"><span class="lbl">🥤 Κυβικά</span><span class="val" id="ccV">1600<small>cc</small></span></div>
+<input type="range" id="cc" min="600" max="3500" step="50" value="1600">
+<div class="sl-tip">Μέγεθος κινητήρα · μεγαλύτερος = πιο δυνατός</div>
 </div>
 
-<div class="sect">
-<div class="stitle">Δοκιμή 0–100</div>
-<div class="grp" style="padding:14px">
-<div class="race"><div id="car">🚗</div></div>
-<button class="btn" id="runBtn">▶ Πάτα το γκάζι</button>
-<div class="status" id="warn"></div>
-<div class="cmp">
-<div class="cr you"><div class="n">Το δικό σου</div><div class="b"><i id="youB" style="width:0"></i></div><div class="t" id="youN">—</div></div>
-<div class="cr"><div class="n">Ferrari SF90</div><div class="b"><i style="width:13%"></i></div><div class="t">2.6s</div></div>
-<div class="cr"><div class="n">Porsche 911</div><div class="b"><i style="width:19%"></i></div><div class="t">3.8s</div></div>
-<div class="cr"><div class="n">VW Golf GTI</div><div class="b"><i style="width:31.5%"></i></div><div class="t">6.3s</div></div>
-<div class="cr"><div class="n">Saab 9-5 2.0T</div><div class="b"><i style="width:42.5%"></i></div><div class="t">8.5s</div></div>
-<div class="cr"><div class="n">Colt CZ3 1.3<small>(Η Μπέμπα)</small></div><div class="b"><i style="width:55%"></i></div><div class="t">11.0s</div></div>
-<div class="cr"><div class="n">Fiat Panda</div><div class="b"><i style="width:70%"></i></div><div class="t">14.0s</div></div>
-</div>
-</div>
+<div class="slr">
+<div class="sl-h"><span class="lbl">🐎 Άλογα</span><span class="val" id="hpV">80<small>hp</small></span></div>
+<input type="range" id="hp" min="30" max="900" step="5" value="80">
+<div class="sl-tip">Ρυθμός επιτάχυνσης · τελική ταχύτητα</div>
 </div>
 
-<div class="sect">
+<div class="slr">
+<div class="sl-h"><span class="lbl">💪 Ροπή</span><span class="val orange" id="tqV">18.0<small>kg·m</small></span></div>
+<input type="range" id="tq" min="5" max="92" step="0.5" value="18">
+<div class="sl-tip">Δύναμη σπρώξιματος · ανηφόρα / προσπέραση</div>
+</div>
+
+<div class="slr">
+<div class="sl-h"><span class="lbl">⚖️ Βάρος</span><span class="val" id="wtV">1300<small>kg</small></span></div>
+<input type="range" id="wt" min="700" max="2500" step="25" value="1300">
+<div class="sl-tip">Ελαφρύτερο = γρηγορότερο σε όλα</div>
+</div>
+
+<div class="slr">
+<div class="sl-h"><span class="lbl">🛞 Πρόσφυση</span><span class="val" id="grV">0.90<small>μ</small></span></div>
+<input type="range" id="gr" min="0.30" max="1.20" step="0.01" value="0.90">
+<div class="sl-tip">Στεγνός 0.9 · βροχή 0.5 · πάγος 0.3</div>
+</div>
+
+<div class="slr">
+<div class="sl-h"><span class="lbl">⛽ Τιμή βενζίνης</span><span class="val" id="prV">2.20<small>€/L</small></span></div>
+<input type="range" id="pr" min="1.30" max="2.50" step="0.01" value="2.20">
+<div class="sl-tip" id="prTip">Τιμή ανά λίτρο στην περιοχή σου</div>
+</div>
+
+</div>
+</section>
+
+<section class="section">
+<div class="section-head"><h2>Test drive</h2><span class="sub">vs Το θηρίο (11.0s)</span></div>
+<div class="feat lavender">
+<div class="lane">
+<div class="lane-head"><span class="lbl">Το δικό σου</span><span class="num" id="youLbl">— s</span></div>
+<div class="lane-track">
+<div class="lane-fill" id="youBar"></div>
+<span class="lane-marker" id="youMark">🚗</span>
+</div>
+</div>
+<div class="lane ghost">
+<div class="lane-head"><span class="lbl">Colt CZ3 1.3 (Το θηρίο)</span><span class="num">11.0 s</span></div>
+<div class="lane-track">
+<div class="lane-fill" id="ghostBar" style="width:100%"></div>
+<span class="lane-marker" id="ghostMark" style="left:100%">🚙</span>
+</div>
+</div>
+<button class="btn" id="runBtn">▶ Ξεκίνα τη δοκιμή</button>
+<div class="res" id="driveRes">Έτοιμο για εκκίνηση</div>
+</div>
+</section>
+
+<section class="section">
+<div class="section-head"><h2>Μοιάζει με…</h2><span class="sub">Top 3</span></div>
+<div id="simBox"><div class="sim-empty">Ψάχνουμε…</div></div>
+</section>
+
+<section class="section">
+<div class="section-head"><h2>Κόστος</h2><span class="sub">Σε ευρώ</span></div>
 <div class="dual">
-<div class="grp">
-<h3>🛣️ Ταξίδι</h3>
-<div class="sr"><div class="top"><span>Απόσταση</span><span class="num" id="distV">100 km</span></div><input type="range" id="dist" min="5" max="100" step="5" value="100"></div>
-<div class="seg" id="tseg"><button data-t="light">🟢</button><button data-t="medium" class="on">🟡</button><button data-t="heavy">🔴</button></div>
-<div class="mr" style="justify-content:center;font-size:10px;margin-top:6px;font-weight:600" id="tlbl">Μέτρια κίνηση</div>
-<div style="margin-top:8px">
+<div class="feat mint">
+<h3>Ταξίδι</h3>
+<div class="dist-head"><span>Απόσταση</span><span class="v" id="distV">100 km</span></div>
+<input type="range" id="dist" min="5" max="100" step="5" value="100">
+<div class="seg" id="tseg">
+<button data-t="light">🟢</button>
+<button data-t="medium" class="on">🟡</button>
+<button data-t="heavy">🔴</button>
+</div>
+<div class="tr-lbl" id="tlbl">Μέτρια κίνηση</div>
 <div class="mr"><span>Καύσιμο</span><b id="trF">—</b></div>
 <div class="mr"><span>Κόστος</span><b id="trC">—</b></div>
 <div class="mr"><span>Χρόνος</span><b id="trT">—</b></div>
 </div>
-</div>
-<div class="grp">
-<h3>⛽ Καύσιμο</h3>
-<div class="mr" style="margin-bottom:6px"><span>Μέση</span><b id="fLbl">—</b></div>
+<div class="feat peach">
+<h3>Καύσιμο</h3>
+<div class="mr"><span>Μέση</span><b id="fLbl">—</b></div>
 <div class="fbar"><div class="f" id="fFill"></div></div>
 <div class="mr"><span>/100 km</span><b id="c100">—</b></div>
 <div class="mr"><span>/έτος</span><b id="cYear">—</b></div>
 <div class="mr"><span>CO₂</span><b id="co2">—</b></div>
+<div class="falert" id="fal">
+<div class="ttl">⚠ Υψηλή κατανάλωση</div>
+<p>Καίει <b id="falVal">—</b> L/100 km. Πάνω από 14 θεωρείται υψηλή.</p>
+<div class="rec">💡 Μείωσε τα κυβικά, τα άλογα ή το βάρος. Κάθε 100 kg παραπάνω = +0.5 L/100 km.</div>
 </div>
 </div>
 </div>
+</section>
 
-<div class="hint" id="hint"></div>
-<div class="hint"><b>💡 Τι να δοκιμάσεις:</b> Κράτα σταθερά τα άλογα και άλλαξε <b>μόνο τη ροπή</b> — θα δεις το 0-100 να αλλάζει.</div>
+<section class="section">
+<div class="section-head"><h2>Αναλογίες</h2></div>
+<div class="ratios">
+<div class="rat"><div class="k">Άλογα/τόνο</div><div class="v" id="hpt">—</div><div class="u">hp/t</div></div>
+<div class="rat"><div class="k">Ροπή/τόνο</div><div class="v" id="tqt" style="color:var(--coral)">—</div><div class="u">kg·m/t</div></div>
+<div class="rat"><div class="k">Κατηγορία</div><div class="v" id="cls" style="font-size:16px">—</div><div class="u">&nbsp;</div></div>
+</div>
+</section>
 
-</main>
+</div>
 
 <script>
-var CD="Fiat|Panda 1.2|1242|69|940;Fiat|500 1.2|1242|69|940;Fiat|Tipo 1.4|1368|95|1275;Fiat|500X 1.6|1598|110|1320;Fiat|Punto Abarth|1368|180|1260;Opel|Corsa 1.2|1198|75|1080;Opel|Astra 1.4|1398|100|1290;Opel|Insignia 1.6|1598|180|1555;Opel|Mokka 1.6|1598|115|1275;Opel|Corsa OPC|1598|192|1203;VW|Polo 1.2|1198|70|1067;VW|Golf 1.4|1395|125|1250;VW|Golf GTI|1984|245|1400;VW|Golf GTI Clubsport|1984|310|1285;VW|Passat 1.4|1395|125|1415;VW|Tiguan 1.4|1395|125|1505;VW|Polo GTI|1984|207|1286;Renault|Clio 1.2|1149|75|1080;Renault|Megane 1.6|1598|115|1300;Renault|Captur 0.9|898|90|1180;Renault|Clio RS 2.0|1998|200|1204;Peugeot|208 1.2|1199|82|1090;Peugeot|308 1.2|1199|130|1265;Peugeot|2008 1.2|1199|82|1205;Peugeot|3008 1.2|1199|130|1415;Peugeot|208 GTI|1598|200|1160;Peugeot|308 GTI 270|1598|270|1205;Citroen|C3 1.2|1199|82|1050;Citroen|C4 1.2|1199|130|1270;Citroen|DS3 Racing|1598|207|1165;Toyota|Yaris 1.3|1329|99|1035;Toyota|Yaris Hybrid|1497|100|1085;Toyota|Corolla Hybrid|1798|122|1330;Toyota|RAV4 Hybrid|2487|197|1725;Toyota|C-HR Hybrid|1798|122|1430;Toyota|Yaris GRMN|1798|212|1135;Toyota|Corolla T Sport|1796|189|1210;Honda|Civic 1.4|1396|100|1250;Honda|CR-V 1.6|1597|120|1550;Honda|Civic Type R FK8|1996|320|1390;Honda|Civic Type R EP3|1998|200|1190;Nissan|Micra 1.0|998|73|1065;Nissan|Qashqai 1.2|1197|115|1340;Nissan|Juke 1.0|999|117|1235;Nissan|Pulsar GTI-R|1998|227|1220;Hyundai|i20 1.2|1248|84|1090;Hyundai|i30 1.4|1368|100|1245;Hyundai|Tucson 1.6|1591|132|1530;Hyundai|i30 N|1998|275|1429;Kia|Picanto 1.0|998|67|935;Kia|Ceed 1.4|1368|100|1270;Kia|Sportage 1.6|1591|132|1520;Kia|Ceed GT|1591|204|1382;Ford|Fiesta 1.0|998|100|1090;Ford|Focus 1.0|998|100|1310;Ford|Puma 1.0|998|125|1280;Ford|Kuga 1.5|1497|150|1590;Ford|Fiesta ST 1.6|1596|182|1163;Ford|Focus ST|2000|250|1362;Seat|Ibiza 1.0|999|80|1060;Seat|Leon 1.0|999|115|1180;Seat|Leon Cupra|1984|300|1421;Skoda|Fabia 1.0|999|75|1035;Skoda|Octavia 1.0|999|115|1235;Skoda|Octavia RS|1984|245|1420;Skoda|Superb 1.5|1498|150|1435;Audi|A1 1.0|999|95|1160;Audi|A3 1.4|1395|150|1315;Audi|A4 2.0 TDI|1968|190|1620;Audi|S3|1984|310|1520;BMW|118i|1499|136|1350;BMW|320i|1998|184|1545;BMW|320d|1995|190|1615;BMW|M135i|2998|326|1430;Mercedes|A 180|1332|136|1415;Mercedes|C 180|1595|156|1530;Mercedes|C 220d|1950|194|1640;Mercedes|A45 AMG|1991|381|1550;Mazda|2 1.5|1496|90|1050;Mazda|3 2.0|1998|122|1320;Mazda|CX-5 2.0|1998|165|1535;Mazda|MX-5 1.5|1496|131|1058;Mazda|3 MPS|2261|260|1403;Suzuki|Swift 1.2|1242|83|1015;Suzuki|Vitara 1.6|1586|120|1235;Suzuki|Jimny 1.5|1462|102|1140;Suzuki|Swift Sport 1.6|1586|136|1045;Suzuki|Swift Sport 1.4 BJ|1373|140|970;Suzuki|Swift 1.4|1373|90|940;Dacia|Sandero 1.0|998|73|1035;Dacia|Duster 1.0|999|100|1275;Mitsubishi|Colt CZ3 1.3|1332|95|1010;Mitsubishi|Colt CZT 1.5T|1468|150|1070;Mitsubishi|Colt Ralliart|1468|154|1140;Mitsubishi|ASX 1.6|1590|117|1350;Mini|Cooper 1.5|1499|136|1265;Mini|Cooper S JCW|1998|231|1205;Volvo|XC40 T3|1477|156|1580;Volvo|XC60 D4|1969|190|1875;Volvo|V40 T5|1969|245|1447;Alfa Romeo|MiTo 1.4|1368|105|1155;Alfa Romeo|Giulietta 1.4|1368|120|1320;Alfa Romeo|Giulietta QV|1742|240|1320;Alfa Romeo|Giulia 2.0|1995|200|1530;Saab|9-3 2.0|1998|175|1435;Saab|9-5 2.0T|1998|220|1600;Lexus|CT 200h|1798|136|1440;Lexus|NX 300h|2494|197|1810;Lexus|IS F|4969|423|1700;Subaru|Forester 2.0|1995|150|1495;Subaru|Impreza WRX STI|1994|300|1490;Porsche|911 Carrera|2981|385|1400;Porsche|Macan 2.0|1984|245|1770;Tesla|Model 3|1|283|1611;Jaguar|XE S|2995|340|1665;Land Rover|Range Rover Sport SVR|5000|550|2335";
+var CD="Fiat|Panda 1.2|1242|69|940;Fiat|500 1.2|1242|69|940;Fiat|Tipo 1.4|1368|95|1275;Fiat|500X 1.6|1598|110|1320;Fiat|Punto Abarth|1368|180|1260;Opel|Corsa 1.2|1198|75|1080;Opel|Astra 1.4|1398|100|1290;Opel|Insignia 1.6|1598|180|1555;Opel|Mokka 1.6|1598|115|1275;Opel|Corsa OPC|1598|192|1203;VW|Polo 1.2|1198|70|1067;VW|Golf 1.4|1395|125|1250;VW|Golf GTI|1984|245|1400;VW|Golf GTI Clubsport|1984|310|1285;VW|Passat 1.4|1395|125|1415;VW|Tiguan 1.4|1395|125|1505;VW|Polo GTI|1984|207|1286;Renault|Clio 1.2|1149|75|1080;Renault|Megane 1.6|1598|115|1300;Renault|Captur 0.9|898|90|1180;Renault|Clio RS 2.0|1998|200|1204;Peugeot|208 1.2|1199|82|1090;Peugeot|308 1.2|1199|130|1265;Peugeot|2008 1.2|1199|82|1205;Peugeot|3008 1.2|1199|130|1415;Peugeot|208 GTI|1598|200|1160;Peugeot|308 GTI 270|1598|270|1205;Citroen|C3 1.2|1199|82|1050;Citroen|C4 1.2|1199|130|1270;Citroen|DS3 Racing|1598|207|1165;Toyota|Yaris 1.3|1329|99|1035;Toyota|Yaris Hybrid|1497|100|1085;Toyota|Corolla Hybrid|1798|122|1330;Toyota|RAV4 Hybrid|2487|197|1725;Toyota|C-HR Hybrid|1798|122|1430;Toyota|Yaris GRMN|1798|212|1135;Toyota|Corolla T Sport|1796|189|1210;Honda|Civic 1.4|1396|100|1250;Honda|CR-V 1.6|1597|120|1550;Honda|Civic Type R FK8|1996|320|1390;Honda|Civic Type R EP3|1998|200|1190;Nissan|Micra 1.0|998|73|1065;Nissan|Qashqai 1.2|1197|115|1340;Nissan|Juke 1.0|999|117|1235;Nissan|Pulsar GTI-R|1998|227|1220;Hyundai|i20 1.2|1248|84|1090;Hyundai|i30 1.4|1368|100|1245;Hyundai|Tucson 1.6|1591|132|1530;Hyundai|i30 N|1998|275|1429;Kia|Picanto 1.0|998|67|935;Kia|Ceed 1.4|1368|100|1270;Kia|Sportage 1.6|1591|132|1520;Kia|Ceed GT|1591|204|1382;Ford|Fiesta 1.0|998|100|1090;Ford|Focus 1.0|998|100|1310;Ford|Puma 1.0|998|125|1280;Ford|Kuga 1.5|1497|150|1590;Ford|Fiesta ST 1.6|1596|182|1163;Ford|Focus ST|2000|250|1362;Seat|Ibiza 1.0|999|80|1060;Seat|Leon 1.0|999|115|1180;Seat|Leon Cupra|1984|300|1421;Skoda|Fabia 1.0|999|75|1035;Skoda|Octavia 1.0|999|115|1235;Skoda|Octavia RS|1984|245|1420;Skoda|Superb 1.5|1498|150|1435;Audi|A1 1.0|999|95|1160;Audi|A3 1.4|1395|150|1315;Audi|A4 2.0 TDI|1968|190|1620;Audi|S3|1984|310|1520;BMW|118i|1499|136|1350;BMW|320i|1998|184|1545;BMW|320d|1995|190|1615;BMW|M135i|2998|326|1430;Mercedes|A 180|1332|136|1415;Mercedes|C 180|1595|156|1530;Mercedes|C 220d|1950|194|1640;Mercedes|A45 AMG|1991|381|1550;Mazda|2 1.5|1496|90|1050;Mazda|3 2.0|1998|122|1320;Mazda|CX-5 2.0|1998|165|1535;Mazda|MX-5 1.5|1496|131|1058;Mazda|3 MPS|2261|260|1403;Suzuki|Swift 1.2|1242|83|1015;Suzuki|Vitara 1.6|1586|120|1235;Suzuki|Jimny 1.5|1462|102|1140;Suzuki|Swift Sport 1.6|1586|136|1045;Suzuki|Swift Sport 1.4 BJ|1373|140|970;Suzuki|Swift 1.4|1373|90|940;Dacia|Sandero 1.0|998|73|1035;Dacia|Duster 1.0|999|100|1275;Mitsubishi|Colt CZ3 1.3|1332|95|1010;Mitsubishi|Colt CZT 1.5T|1468|150|1070;Mitsubishi|Colt Ralliart|1468|154|1140;Mitsubishi|ASX 1.6|1590|117|1350;Mini|Cooper 1.5|1499|136|1265;Mini|Cooper S JCW|1998|231|1205;Volvo|XC40 T3|1477|156|1580;Volvo|XC60 D4|1969|190|1875;Volvo|V40 T5|1969|245|1447;Alfa Romeo|MiTo 1.4|1368|105|1155;Alfa Romeo|Giulietta 1.4|1368|120|1320;Alfa Romeo|Giulietta QV|1742|240|1320;Alfa Romeo|Giulia 2.0|1995|200|1530;Saab|9-3 2.0|1998|175|1435;Saab|9-5 2.0T|1998|220|1600;Lexus|CT 200h|1798|136|1440;Lexus|NX 300h|2494|197|1810;Lexus|IS F|4969|423|1700;Subaru|Forester 2.0|1995|150|1495;Subaru|Impreza WRX STI|1994|300|1490;Porsche|911 Carrera|2981|385|1400;Porsche|Macan 2.0|1984|245|1770;Tesla|Model 3|1|283|1611;Jaguar|XE S|2995|340|1665;Land Rover|Range Rover Sport SVR|5000|550|2335;Bugatti|Chiron|7993|1500|1995";
 var CARS=[];
 (function(){var a=CD.split(';');for(var i=0;i<a.length;i++){var p=a[i].split('|');CARS.push([p[0],p[1],+p[2],+p[3],+p[4]])}})();
-var REL={Lexus:98,Toyota:95,Honda:93,Mazda:88,Suzuki:87,Kia:85,Hyundai:84,Subaru:82,Mitsubishi:80,Nissan:76,Skoda:78,Seat:76,Volvo:75,BMW:74,Audi:73,Mercedes:72,Mini:70,VW:70,Ford:68,Opel:68,Peugeot:65,Citroen:63,Dacia:65,Renault:62,Fiat:58,"Alfa Romeo":55,Saab:70,Porsche:80,Tesla:65,Jaguar:50,"Land Rover":48};
-
-var S={cc:1600,tq:175,hp:80,wt:1300,gr:0.9,price:1.85,auto:true};
+var REL={Lexus:98,Toyota:95,Honda:93,Mazda:88,Suzuki:87,Kia:85,Hyundai:84,Subaru:82,Mitsubishi:80,Nissan:76,Skoda:78,Seat:76,Volvo:75,BMW:74,Audi:73,Mercedes:72,Mini:70,VW:70,Ford:68,Opel:68,Peugeot:65,Citroen:63,Dacia:65,Renault:62,Fiat:58,"Alfa Romeo":55,Saab:70,Porsche:80,Tesla:65,Jaguar:50,"Land Rover":48,Bugatti:75};
+var SIM_COLORS=['pink','lavender','ochre'];
+var NM=9.81;
+var S={cc:1600,tq:18*NM,hp:80,wt:1300,gr:0.9,price:2.20,auto:true};
 var GEARS=6,TRIP=100,TRAF='medium';
-var TR={light:{f:0.9,s:75,l:'Χαλαρή κίνηση'},medium:{f:1.3,s:40,l:'Μέτρια κίνηση'},heavy:{f:1.8,s:12,l:'Βαριά κίνηση'}};
-var simT=null;
+var TR={light:{f:0.9,s:75,l:'Χαλαρή'},medium:{f:1.3,s:40,l:'Μέτρια'},heavy:{f:1.8,s:12,l:'Βαριά'}};
+var GHOST_TIME=11.0;
+var FUEL_SOFT=7.5;
+var simT=null,animT=null,ghostT=null;
 function $(i){return document.getElementById(i)}
 function cl(v,a,b){return Math.max(a,Math.min(b,v))}
 function T(r){var rl=cl(7000-S.cc/2.5,4500,7000),rt=rl*0.45,d=(r-rt)/rt;return r<=rt?S.tq*(0.6+0.4*Math.exp(-Math.pow(d/0.8,2))):S.tq*(0.5+0.5*Math.exp(-Math.pow(d/0.62,2)))}
 function P(r){return T(r)*r/7127}
-function autoSync(){S.tq=cl(Math.round(S.cc*0.11/5)*5,50,900);var rl=cl(7000-S.cc/2.5,4500,7000),p=0;for(var r=800;r<=rl;r+=25){var x=P(r);if(x>p)p=x}S.hp=Math.max(30,Math.round(p/5)*5)}
+function peakHP(){var rl=cl(7000-S.cc/2.5,4500,7000),p=0;for(var r=800;r<=rl;r+=25){var x=P(r);if(x>p)p=x}return Math.max(30,Math.round(p/5)*5)}
+function tqFromHP(target){var lo=5,hi=92,mid;for(var i=0;i<18;i++){mid=(lo+hi)/2;var sv=S.tq;S.tq=mid*NM;var hp=peakHP();S.tq=sv;if(hp<target)lo=mid;else hi=mid}return Math.round(((lo+hi)/2)*2)/2}
+function autoSyncFromCC(){var kg=S.cc*0.11/NM;kg=cl(Math.round(kg*2)/2,5,92);S.tq=kg*NM;S.hp=peakHP()}
 function tqMult(){return cl(Math.pow(130/Math.max(S.tq/(S.wt/1000),40),0.30),0.7,1.5)}
-function slide(id,v){v=parseFloat(v);if(isNaN(v))return;S[id]=v;if((id==='tq'||id==='hp')&&S.auto){S.auto=false;var a=$('am');if(a)a.checked=false}if(id==='cc'&&S.auto)autoSync();render()}
-function setAuto(on){S.auto=!!on;if(S.auto)autoSync();render()}
-function setTraf(t){TRAF=t;var b=document.querySelectorAll('#tseg button');for(var i=0;i<b.length;i++)b[i].className=b[i].getAttribute('data-t')===t?'on':'';var l=$('tlbl');if(l)l.textContent=TR[t].l;render()}
+function slide(id,v){
+  v=parseFloat(v);if(isNaN(v))return;
+  if(id==='cc'){S.cc=v;if(S.auto)autoSyncFromCC()}
+  else if(id==='tq'){v=Math.round(v*2)/2;S.tq=v*NM;if(S.auto)S.hp=peakHP()}
+  else if(id==='hp'){v=Math.round(v/5)*5;S.hp=v;if(S.auto)S.tq=tqFromHP(S.hp)*NM}
+  else if(id==='wt')S.wt=v;
+  else if(id==='gr')S.gr=v;
+  else if(id==='pr')S.price=v;
+  render();
+}
+function setAuto(on){S.auto=!!on;if(S.auto)autoSyncFromCC();render()}
+function setTraf(t){TRAF=t;var b=document.querySelectorAll('#tseg button');for(var i=0;i<b.length;i++)b[i].className=b[i].getAttribute('data-t')===t?'on':'';$('tlbl').textContent=TR[t].l;render()}
 function fmt(h){if(!isFinite(h)||h<0)return'—';var hh=Math.floor(h),mm=Math.round((h-hh)*60);if(hh===0)return mm+'λ';if(mm===0)return hh+'ώ';return hh+'ώ'+mm+'λ'}
 function relOf(m){return REL[m]||70}
-function relColor(s){return s>=80?'var(--gr)':s>=65?'var(--yl)':s>=50?'var(--og)':'var(--rd)'}
+function relColor(s){return s>=80?'#22c55e':s>=65?'#e8b94a':s>=50?'#f59e0b':'#ef4444'}
 
 function findSim(){
   var res=[];
@@ -246,11 +440,13 @@ function renderSimNow(){
   simT=null;
   var box=$('simBox');if(!box)return;
   var m=findSim();
-  if(!m.length){box.innerHTML='<div class="sim empty">Δεν βρέθηκε κοντινό μοντέλο</div>';return}
-  var h='',me=['🥇','🥈','🥉'];
+  if(!m.length){box.innerHTML='<div class="sim-empty">Κανένα κοντινό μοντέλο</div>';return}
+  var medals=['🥇','🥈','🥉'];
+  var h='';
   for(var i=0;i<m.length;i++){
     var c=m[i].c,rl=relOf(c[0]),rc=relColor(rl);
-    h+='<div class="sim"><div class="r">'+me[i]+'</div><div class="in"><div class="nm">'+c[0]+' '+c[1]+'</div><div class="sp">'+c[2]+'cc · '+c[3]+'hp · '+c[4]+'kg</div><div class="rel"><span class="rlbl">Αξιοπιστία</span><div class="rbar"><div class="rfill" style="width:'+rl+'%;background:'+rc+'"></div></div><span class="rnum">'+rl+'</span></div></div><div class="pct">'+m[i].s+'%</div></div>';
+    var cls=SIM_COLORS[i]||'ochre';
+    h+='<div class="sim-row '+cls+'"><div class="sim-medal">'+medals[i]+'</div><div class="sim-body"><div class="sim-nm">'+c[0]+' '+c[1]+'</div><div class="sim-sp">'+c[2]+'cc · '+c[3]+'hp · '+c[4]+'kg</div><div class="sim-rel">Αξιοπιστία<div class="bar"><i style="width:'+rl+'%;background:'+rc+'"></i></div><span>'+rl+'</span></div></div><div class="sim-pct">'+m[i].s+'<small>%</small></div></div>';
   }
   box.innerHTML=h;
 }
@@ -258,33 +454,55 @@ function renderSim(){if(simT)clearTimeout(simT);simT=setTimeout(renderSimNow,80)
 
 function render(){
 if(!$('ccV'))return;
-$('ccV').innerHTML=S.cc+'<span class="u">cc</span>';
-$('tqV').innerHTML=S.tq+'<span class="u">Nm</span>';
-$('hpV').innerHTML=S.hp+'<span class="u">hp</span>';
-$('wtV').innerHTML=S.wt+'<span class="u">kg</span>';
-$('grV').innerHTML=S.gr.toFixed(2)+'<span class="u">μ</span>';
-$('prV').innerHTML=S.price.toFixed(2)+'<span class="u">€/L</span>';
-$('tq').value=S.tq;$('hp').value=S.hp;
-var pj=$('pj');if(pj)pj.style.display=S.price<1.7?'block':'none';
+var tqKg=S.tq/NM;
+$('ccV').innerHTML=S.cc+'<small>cc</small>';
+$('tqV').innerHTML=tqKg.toFixed(1)+'<small>kg·m</small>';
+$('hpV').innerHTML=S.hp+'<small>hp</small>';
+$('wtV').innerHTML=S.wt+'<small>kg</small>';
+$('grV').innerHTML=S.gr.toFixed(2)+'<small>μ</small>';
+$('prV').innerHTML=S.price.toFixed(2)+'<small>€/L</small>';
+$('tq').value=tqKg.toFixed(1);$('hp').value=S.hp;
+
+if(S.price<1.70){
+  $('prTip').innerHTML='Χαχαχα πολύ καλό <span class="clown">🤡</span>';
+}else{
+  $('prTip').textContent='Τιμή ανά λίτρο στην περιοχή σου';
+}
 
 var t100=(S.wt/S.hp)*1.05*tqMult()*(1-(GEARS-5)*0.022);
 var ta=S.gr*9.81*0.6,tg=27.78/ta,spin=t100<tg;if(spin)t100=tg;t100=cl(t100,2,45);
 var tpt=S.tq/(S.wt/1000);
 var vmax=cl(175*Math.pow(S.hp/100,1/3.5)*(1+(GEARS-5)*0.008+(tpt>200?0.03:tpt>130?0.015:-0.01)),110,420);
 var fuel=cl(3+S.cc/600+S.wt/800+S.hp/300-(GEARS-5)*0.15+(tpt-130)/1500,3.2,35);
-var brake=(27.78*27.78)/(2*S.gr*9.81),hpt=S.hp/(S.wt/1000),tqt=S.tq/(S.wt/1000);
+var brake=(27.78*27.78)/(2*S.gr*9.81),hpt=S.hp/(S.wt/1000),tqt=tqKg/(S.wt/1000);
 
-$('r100').textContent=t100.toFixed(1);
+$('heroNum').innerHTML=t100.toFixed(1)+'<span class="unit">sec</span>';
+var beat=Math.round(cl((14-t100)/11.4*100,5,95));
+$('heroCap').innerHTML='Πιο γρήγορο από το <b>'+beat+'%</b> των αμαξιών';
+var emoji='🚗';
+if(hpt>180)emoji='🏎️';
+else if(hpt<60)emoji='🚙';
+$('heroEmoji').textContent=emoji;
+$('chipHp').textContent=S.hp+' hp';
+$('chipTq').textContent=tqKg.toFixed(0)+' kg·m';
+$('chipWt').textContent=S.wt+' kg';
+
 $('rvmax').textContent=Math.round(vmax);
 $('rfuel').textContent=fuel.toFixed(1);
 $('rbrake').textContent=Math.round(brake);
+$('rtq').textContent=Math.round(tqt);
+
 $('hpt').textContent=Math.round(hpt);
 $('tqt').textContent=Math.round(tqt);
 $('cls').textContent=hpt>300?'Supercar':hpt>180?'Σπορ':hpt>120?'Γρήγορο':hpt>80?'Νορμάλ':'Αργό';
 
+var fal=$('fal');
+if(fuel>14){fal.classList.add('show');$('falVal').textContent=fuel.toFixed(1)}
+else{fal.classList.remove('show')}
+
 var fp=cl(fuel/20*100,5,100);
 $('fFill').style.width=fp+'%';
-$('fFill').style.background=fuel<6?'var(--gr)':fuel<10?'var(--yl)':'var(--rd)';
+$('fFill').style.background=fuel<6?'var(--success)':fuel<10?'var(--warning)':'var(--error)';
 $('fLbl').textContent=fuel.toFixed(1)+' L/100';
 $('c100').textContent=(fuel*S.price).toFixed(1)+' €';
 $('cYear').textContent=Math.round(fuel*S.price*150)+' €';
@@ -296,64 +514,73 @@ $('trF').textContent=tL.toFixed(1)+' L';
 $('trC').textContent=tC.toFixed(2)+' €';
 $('trT').textContent=fmt(tH);
 
-$('youB').style.width=cl(t100/20*100,3,100)+'%';
-$('youN').textContent=t100.toFixed(1)+'s';
-var wn=$('warn');
-if(spin){wn.className='status no';wn.innerHTML='🛞 Σπινάρει — η δύναμη χάνεται στο λάστιχο'}
-else{wn.className='status ok';wn.innerHTML='✓ Καλή πρόσφυση'}
+$('youLbl').textContent=t100.toFixed(1)+' s';
 
 var hm;
-if(tqt>250)hm='💪 <b>Πολλή ροπή ('+Math.round(tqt)+' Nm/t).</b> Δυνατό τράβηγμα από χαμηλά.';
-else if(tqt<90)hm='⚠️ <b>Λίγη ροπή ('+Math.round(tqt)+' Nm/t).</b> Δυσκολεύεται στις ανηφόρες.';
-else if(hpt>200)hm='🏎️ <b>Πολύ δυνατό.</b> Το εμπόδιο είναι η πρόσφυση.';
-else if(fuel>14)hm='⛽ <b>Καίει πολύ.</b> Κατέβασε τα κυβικά στα 1600.';
-else if(S.gr<0.5)hm='🌧️ <b>Δεν πατάει καλά.</b> Φρένο: '+Math.round(brake)+' μέτρα.';
-else if(t100>13)hm='🐢 <b>Λίγο νωθό.</b> Δοκίμασε 200 άλογα.';
-else hm='👍 <b>Ισορροπημένο.</b> Δοκίμασε 3000 κυβικά.';
-$('hint').innerHTML=hm;
+if(tqt>22) hm='<b>Πολλή ροπή ('+Math.round(tqt)+' kg·m/t).</b> Δυνατό τράβηγμα από χαμηλά.';
+else if(tqt<10) hm='<b>Λίγη ροπή ('+Math.round(tqt)+' kg·m/t).</b> Δυσκολεύεται στις ανηφόρες.';
+else if(hpt>200) hm='<b>Πολύ δυνατό.</b> Το εμπόδιο είναι η πρόσφυση.';
+else if(S.gr<0.5) hm='<b>Χαμηλή πρόσφυση.</b> Φρένο: '+Math.round(brake)+' μέτρα.';
+else if(t100>13) hm='<b>Λίγο νωθό.</b> Δοκίμασε 200 άλογα.';
+else hm='<b>Ισορροπημένο.</b> Δοκίμασε 3000 κυβικά.';
+
+var hm2='';
+if(fuel>14){
+  hm2='<b>⚠ Καίει πάρα πολύ.</b> Δες τη συμβουλή στο panel του καυσίμου.';
+}else if(fuel>FUEL_SOFT){
+  hm2='<b>⚠ Πρόσεχε.</b> Πάνω από '+FUEL_SOFT+' L/100 καίει πολύ — με λιγότερα κυβικά ή ελαφρύτερο αμάξι θα τα πήγαινες καλύτερα.';
+}
+
+$('hint').innerHTML = hm + (hm2 ? '<div class="fuel-warn">'+hm2+'</div>' : '');
 renderSim();
 }
 
-var animT=null;
 function runTest(){
-var car=$('car');if(!car)return;
-var ml=car.parentElement.clientWidth-34;if(ml<10)return;
-var t=parseFloat($('r100').textContent)||10;
-if(animT)cancelAnimationFrame(animT);car.style.left='8px';
-var dur=t*1000,st=Date.now();
-function step(){var k=cl((Date.now()-st)/dur,0,1);car.style.left=(8+Math.pow(k,1.45)*ml)+'px';if(k<1)animT=requestAnimationFrame(step)}
-animT=requestAnimationFrame(step);
-}
+var you=$('youMark'),ghost=$('ghostMark'),bar=$('youBar'),gbar=$('ghostBar'),res=$('driveRes'),btn=$('runBtn');
+if(!you)return;
+var t100=parseFloat($('heroNum').textContent)||10;
+if(animT)cancelAnimationFrame(animT);
+if(ghostT)cancelAnimationFrame(ghostT);
+you.style.left='0%';ghost.style.left='0%';bar.style.width='0%';gbar.style.width='0%';
+btn.disabled=true;res.innerHTML='Τρέχει…';
 
-function setTheme(m){
-  document.documentElement.setAttribute('data-theme',m);
-  try{localStorage.setItem('t',m==='light'?'l':'d')}catch(e){}
-  var b=$('tbtn');if(b)b.textContent=m==='light'?'🌙':'☀️';
-  var mt=document.querySelector('meta[name=theme-color]');
-  if(mt)mt.setAttribute('content',m==='light'?'#f2f2f7':'#000000');
+var start=Date.now(),dur=t100*1000;
+function step(){
+  var k=cl((Date.now()-start)/dur,0,1);
+  var e=Math.pow(k,1.45);
+  you.style.left=(e*100)+'%';bar.style.width=(e*100)+'%';
+  if(k<1){animT=requestAnimationFrame(step)}
+  else{
+    btn.disabled=false;
+    var won=t100<GHOST_TIME;
+    if(won)res.innerHTML='<span class="hit">🏆 Κέρδισες!</span> '+t100.toFixed(1)+'s vs '+GHOST_TIME+'s';
+    else res.innerHTML='<b>Ολοκληρώθηκε</b> · '+t100.toFixed(1)+'s · Το Θεριό: '+GHOST_TIME+'s';
+  }
+}
+var gStart=Date.now(),gDur=GHOST_TIME*1000;
+function gStep(){
+  var k=cl((Date.now()-gStart)/gDur,0,1);
+  var e=Math.pow(k,1.45);
+  ghost.style.left=(e*100)+'%';gbar.style.width=(e*100)+'%';
+  if(k<1)ghostT=requestAnimationFrame(gStep);
+}
+animT=requestAnimationFrame(step);
+ghostT=requestAnimationFrame(gStep);
 }
 
 function bind(){
-if(!$('js'))return;
-$('js').style.background='var(--gr)';
 ['cc','tq','hp','wt','gr','pr'].forEach(function(id){
   var el=$(id);if(!el)return;
   el.addEventListener('input',function(){slide(id,this.value)});
   el.addEventListener('change',function(){slide(id,this.value)});
 });
-var a=$('am');if(a)a.addEventListener('change',function(){setAuto(this.checked)});
-var b=$('runBtn');if(b)b.addEventListener('click',runTest);
+$('am').addEventListener('change',function(){setAuto(this.checked)});
+$('runBtn').addEventListener('click',runTest);
 var d=$('dist');if(d){d.addEventListener('input',function(){TRIP=parseFloat(this.value);render()});d.addEventListener('change',function(){TRIP=parseFloat(this.value);render()})}
 var bs=document.querySelectorAll('#tseg button');
 for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){setTraf(this.getAttribute('data-t'))});
-var tb=$('tbtn');
-if(tb){
-  var cur=document.documentElement.getAttribute('data-theme')||'dark';
-  tb.textContent=cur==='light'?'🌙':'☀️';
-  tb.addEventListener('click',function(){setTheme((document.documentElement.getAttribute('data-theme')||'dark')==='light'?'dark':'light')});
-}
-var l=$('tlbl');if(l)l.textContent=TR[TRAF].l;
-autoSync();render();
+$('tlbl').textContent=TR[TRAF].l;
+autoSyncFromCC();render();
 if(simT)clearTimeout(simT);renderSimNow();
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bind);else bind();
